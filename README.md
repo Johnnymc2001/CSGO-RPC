@@ -2,7 +2,7 @@
 - Show to discord what you are doing in CS:GO
 
 # Requirement
-- This app required [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0) to be installed on your computer to be able to run
+- This app required [.NET 6 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-6.0.0-windows-x64-installer) to be installed on your computer to be able to run
 
 # Installation
 - For the app to work with csgo, the gamestate config file must first be copy to CSGO's cfg folder before running CS:GO, you can do it's in 2 way
