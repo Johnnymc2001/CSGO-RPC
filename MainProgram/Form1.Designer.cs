@@ -49,6 +49,8 @@
             this.tabIngame_cbShowMap = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tabIngame_cbShowKDA = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -208,6 +210,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.tabIngame_cbShowKDA);
+            this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.tabIngame_btnSave);
             this.tabPage3.Controls.Add(this.tabIngame_cbShowGamemode);
             this.tabPage3.Controls.Add(this.tabIngame_cbShowMap);
@@ -263,6 +267,25 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 69);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Small Image";
+            // 
+            // tabIngame_cbShowKDA
+            // 
+            this.tabIngame_cbShowKDA.AutoSize = true;
+            this.tabIngame_cbShowKDA.Location = new System.Drawing.Point(8, 85);
+            this.tabIngame_cbShowKDA.Name = "tabIngame_cbShowKDA";
+            this.tabIngame_cbShowKDA.Size = new System.Drawing.Size(78, 17);
+            this.tabIngame_cbShowKDA.TabIndex = 17;
+            this.tabIngame_cbShowKDA.Text = "Show KDA";
+            this.tabIngame_cbShowKDA.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,6 +334,8 @@
         private System.Windows.Forms.CheckBox tabIngame_cbShowGamemode;
         private System.Windows.Forms.CheckBox tabIngame_cbShowMap;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox tabIngame_cbShowKDA;
+        private System.Windows.Forms.Label label6;
     }
 }
 

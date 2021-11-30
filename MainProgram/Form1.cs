@@ -35,6 +35,7 @@ namespace MainProgram
         {
             public static bool ShowMap { get; set; } = true;
             public static bool ShowGamemode { get; set; } = true;
+            public static bool ShowKDA { get; set; } = true;
         }
 
         public Form1()
@@ -106,7 +107,6 @@ namespace MainProgram
             var player = gs.Player;
             var activity = player.Activity;
 
-            //Trace.WriteLine(gs.JSON);
             if (activity.ToString().ToLower() == "menu")
             {
                 var name = player.Name;
@@ -137,12 +137,17 @@ namespace MainProgram
                 string teamTStr = $"[𝗧 {teamT.Score}]";
                 string teamCTStr = $"[{teamCT.Score} 𝗖𝗧]";
 
+                var stat = player.MatchStats;
+
                 string smallKey = player.Team.ToString() == "T" ? "terrorists" : "counterterrorists" ?? "spec";
                 string smallText = $"{player.Name}";
 
+                if (IngameSetting.ShowKDA) smallText += $" | {stat.Kills}/{stat.Deaths}/{stat.Assists} ({stat.Score}) [{stat.MVPs}⭐]";
+
+
                 UpdatePresence($"{detail}", $"{teamTStr} ({phase}) {teamCTStr}", largeKey, largeKey, smallKey, smallText);
             }
-            //Trace.Write(gs.JSON);
+            Trace.Write(gs.JSON);
         }
 
         private void UpdatePresence(
@@ -228,9 +233,13 @@ namespace MainProgram
             // Init For Ingame
             IngameSetting.ShowMap = GetConfig("Ingame_ShowMap") == "True";
             IngameSetting.ShowGamemode = GetConfig("Ingame_ShowGamemode") == "True";
+            IngameSetting.ShowKDA = GetConfig("Ingame_ShowKDA") == "True";
+
 
             tabIngame_cbShowMap.Checked = IngameSetting.ShowMap;
             tabIngame_cbShowGamemode.Checked = IngameSetting.ShowGamemode;
+            tabIngame_cbShowKDA.Checked = IngameSetting.ShowKDA;
+
             if (GetConfig("AutoStart") == "True")
             {
                 // Init For Main
@@ -326,12 +335,16 @@ namespace MainProgram
         {
             bool ShowMap = tabIngame_cbShowMap.Checked ? true : false;
             bool ShowGamemode = tabIngame_cbShowGamemode.Checked ? true : false;
+            bool ShowKDA = tabIngame_cbShowKDA.Checked ? true : false;
+
 
             SetConfig("Ingame_ShowMap", ShowMap == true ? "True" : "False");
             SetConfig("Ingame_ShowGamemode", ShowGamemode == true ? "True" : "False");
+            SetConfig("Ingame_ShowKDA", ShowKDA == true ? "True" : "False");
 
             IngameSetting.ShowMap = ShowMap;
             IngameSetting.ShowGamemode = ShowGamemode;
+            IngameSetting.ShowKDA = ShowKDA;
 
             MessageBox.Show("Setting saved!");
         }
