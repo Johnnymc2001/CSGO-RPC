@@ -1,6 +1,5 @@
 ﻿using CSGSI;
 using DiscordRPC;
-using Gameloop.Vdf;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;

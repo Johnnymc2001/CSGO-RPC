@@ -273,7 +273,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnStart);
             this.Name = "Form1";
-            this.Text = "CSGO - Discord Rick Presence";
+            this.Text = "CSGO - Discord Rich Presence";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
