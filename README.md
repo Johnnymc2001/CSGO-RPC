@@ -35,7 +35,27 @@
             } 
         }
 
-  
+# Plaecholders
+- Match :
+	- {TScore}/{CTScore}  - Team's Score 
+	- {TName}/{CTName} - Team's Name
+
+	- {Phase} - Game Phase
+	- {Round} - Current Round
+	- {Mode} - Current Mode
+	- {Map} - Current Map
+
+	- {Kill}/{Death}/{Assist}/{Score}/{MVP} - Player's KDA
+
+- Player:
+	- {Name} - Player's Name
+	- {ID} - Player's ID
+	- {Version} - Game's Version
+	- {ProgramVersion} - Program's Version
+
+
+
+
 
 # Implementation
 
