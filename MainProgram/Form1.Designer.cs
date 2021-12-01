@@ -45,12 +45,15 @@
             this.tabLobby_txtDetail = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabIngame_btnSave = new System.Windows.Forms.Button();
-            this.tabIngame_cbShowGamemode = new System.Windows.Forms.CheckBox();
-            this.tabIngame_cbShowMap = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.tabIngame_cbShowMap = new System.Windows.Forms.CheckBox();
+            this.tabIngame_cbShowGamemode = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabIngame_cbShowKDA = new System.Windows.Forms.CheckBox();
+            this.tabIngame_txtState = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -210,6 +213,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.tabIngame_txtState);
             this.tabPage3.Controls.Add(this.tabIngame_cbShowKDA);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.tabIngame_btnSave);
@@ -233,26 +239,6 @@
             this.tabIngame_btnSave.UseVisualStyleBackColor = true;
             this.tabIngame_btnSave.Click += new System.EventHandler(this.tabIngame_btnSave_Click);
             // 
-            // tabIngame_cbShowGamemode
-            // 
-            this.tabIngame_cbShowGamemode.AutoSize = true;
-            this.tabIngame_cbShowGamemode.Location = new System.Drawing.Point(9, 45);
-            this.tabIngame_cbShowGamemode.Name = "tabIngame_cbShowGamemode";
-            this.tabIngame_cbShowGamemode.Size = new System.Drawing.Size(110, 17);
-            this.tabIngame_cbShowGamemode.TabIndex = 14;
-            this.tabIngame_cbShowGamemode.Text = "Show Gamemode";
-            this.tabIngame_cbShowGamemode.UseVisualStyleBackColor = true;
-            // 
-            // tabIngame_cbShowMap
-            // 
-            this.tabIngame_cbShowMap.AutoSize = true;
-            this.tabIngame_cbShowMap.Location = new System.Drawing.Point(9, 22);
-            this.tabIngame_cbShowMap.Name = "tabIngame_cbShowMap";
-            this.tabIngame_cbShowMap.Size = new System.Drawing.Size(77, 17);
-            this.tabIngame_cbShowMap.TabIndex = 13;
-            this.tabIngame_cbShowMap.Text = "Show Map";
-            this.tabIngame_cbShowMap.UseVisualStyleBackColor = true;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -267,10 +253,30 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // tabIngame_cbShowMap
+            // 
+            this.tabIngame_cbShowMap.AutoSize = true;
+            this.tabIngame_cbShowMap.Location = new System.Drawing.Point(9, 59);
+            this.tabIngame_cbShowMap.Name = "tabIngame_cbShowMap";
+            this.tabIngame_cbShowMap.Size = new System.Drawing.Size(77, 17);
+            this.tabIngame_cbShowMap.TabIndex = 13;
+            this.tabIngame_cbShowMap.Text = "Show Map";
+            this.tabIngame_cbShowMap.UseVisualStyleBackColor = true;
+            // 
+            // tabIngame_cbShowGamemode
+            // 
+            this.tabIngame_cbShowGamemode.AutoSize = true;
+            this.tabIngame_cbShowGamemode.Location = new System.Drawing.Point(92, 59);
+            this.tabIngame_cbShowGamemode.Name = "tabIngame_cbShowGamemode";
+            this.tabIngame_cbShowGamemode.Size = new System.Drawing.Size(110, 17);
+            this.tabIngame_cbShowGamemode.TabIndex = 14;
+            this.tabIngame_cbShowGamemode.Text = "Show Gamemode";
+            this.tabIngame_cbShowGamemode.UseVisualStyleBackColor = true;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 69);
+            this.label6.Location = new System.Drawing.Point(6, 79);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 16;
@@ -279,12 +285,38 @@
             // tabIngame_cbShowKDA
             // 
             this.tabIngame_cbShowKDA.AutoSize = true;
-            this.tabIngame_cbShowKDA.Location = new System.Drawing.Point(8, 85);
+            this.tabIngame_cbShowKDA.Location = new System.Drawing.Point(76, 78);
             this.tabIngame_cbShowKDA.Name = "tabIngame_cbShowKDA";
             this.tabIngame_cbShowKDA.Size = new System.Drawing.Size(78, 17);
             this.tabIngame_cbShowKDA.TabIndex = 17;
             this.tabIngame_cbShowKDA.Text = "Show KDA";
             this.tabIngame_cbShowKDA.UseVisualStyleBackColor = true;
+            // 
+            // tabIngame_txtState
+            // 
+            this.tabIngame_txtState.Location = new System.Drawing.Point(44, 33);
+            this.tabIngame_txtState.Name = "tabIngame_txtState";
+            this.tabIngame_txtState.Size = new System.Drawing.Size(443, 20);
+            this.tabIngame_txtState.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 36);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "State";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 98);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(182, 78);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Placeholders :\r\n{TScore}/{CTScore}  - Team\'s Score\r\n{TName}/{CTName} - Team\'s Nam" +
+    "e\r\n{Phase} - Game Phase\r\n{Round} - Current Round\r\n\r\n";
             // 
             // Form1
             // 
@@ -331,11 +363,14 @@
         private System.Windows.Forms.TextBox tabLobby_txtState;
         private System.Windows.Forms.TextBox tabLobby_txtDetail;
         private System.Windows.Forms.Button tabIngame_btnSave;
-        private System.Windows.Forms.CheckBox tabIngame_cbShowGamemode;
-        private System.Windows.Forms.CheckBox tabIngame_cbShowMap;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tabIngame_txtState;
         private System.Windows.Forms.CheckBox tabIngame_cbShowKDA;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox tabIngame_cbShowGamemode;
+        private System.Windows.Forms.CheckBox tabIngame_cbShowMap;
     }
 }
 

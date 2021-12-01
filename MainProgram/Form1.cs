@@ -36,6 +36,7 @@ namespace MainProgram
             public static bool ShowMap { get; set; } = true;
             public static bool ShowGamemode { get; set; } = true;
             public static bool ShowKDA { get; set; } = true;
+            public static string State { get; internal set; }
         }
 
         public Form1()
@@ -102,6 +103,29 @@ namespace MainProgram
         }
         // ================================================================ GameStates ================================================================
 
+        private string ParsePlaceHolder(GameState gs, string str)
+        {
+            var game = gs.Map;
+
+            string phase = gs.Round.Phase.ToString();
+
+            var t = game.TeamT;
+            var ct = game.TeamCT;
+
+            if (str == null) return "";
+
+            str = str.Replace("{TScore}", t.Score.ToString())
+                .Replace("{TName}", t.Name.ToString())
+
+                .Replace("{CTScore}", ct.Score.ToString())
+                .Replace("{CTName}", ct.Name.ToString())
+
+                .Replace("{Phase}", phase)
+                .Replace("{Round}", game.Round.ToString());
+
+            return str;
+        }
+
         private void OnNewGameState(GameState gs)
         {
             var player = gs.Player;
@@ -134,8 +158,9 @@ namespace MainProgram
                 if (IngameSetting.ShowGamemode) detail += mode;
                 if (IngameSetting.ShowMap) { detail += detail != "" ? " - " + map : map; largeKey = $"{map}"; }
 
-                string teamTStr = $"[𝗧 {teamT.Score}]";
-                string teamCTStr = $"[{teamCT.Score} 𝗖𝗧]";
+                string stateStr = ParsePlaceHolder(gs, IngameSetting.State);
+                Trace.WriteLine("Before : " + IngameSetting.State);
+                Trace.WriteLine("After : " + stateStr);
 
                 var stat = player.MatchStats;
 
@@ -145,9 +170,9 @@ namespace MainProgram
                 if (IngameSetting.ShowKDA) smallText += $" | {stat.Kills}/{stat.Deaths}/{stat.Assists} ({stat.Score}) [{stat.MVPs}⭐]";
 
 
-                UpdatePresence($"{detail}", $"{teamTStr} ({phase}) {teamCTStr}", largeKey, largeKey, smallKey, smallText);
+                UpdatePresence($"{detail}", $"{stateStr}", largeKey, largeKey, smallKey, smallText);
             }
-            Trace.Write(gs.JSON);
+            //Trace.Write(gs.JSON);
         }
 
         private void UpdatePresence(
@@ -234,11 +259,12 @@ namespace MainProgram
             IngameSetting.ShowMap = GetConfig("Ingame_ShowMap") == "True";
             IngameSetting.ShowGamemode = GetConfig("Ingame_ShowGamemode") == "True";
             IngameSetting.ShowKDA = GetConfig("Ingame_ShowKDA") == "True";
-
+            IngameSetting.State = GetConfig("Ingame_State");
 
             tabIngame_cbShowMap.Checked = IngameSetting.ShowMap;
             tabIngame_cbShowGamemode.Checked = IngameSetting.ShowGamemode;
             tabIngame_cbShowKDA.Checked = IngameSetting.ShowKDA;
+            tabIngame_txtState.Text = IngameSetting.State;
 
             if (GetConfig("AutoStart") == "True")
             {
@@ -333,15 +359,18 @@ namespace MainProgram
 
         private void tabIngame_btnSave_Click(object sender, EventArgs e)
         {
+            string state = tabIngame_txtState.Text;
             bool ShowMap = tabIngame_cbShowMap.Checked ? true : false;
             bool ShowGamemode = tabIngame_cbShowGamemode.Checked ? true : false;
             bool ShowKDA = tabIngame_cbShowKDA.Checked ? true : false;
 
 
+            SetConfig("Ingame_State", state);
             SetConfig("Ingame_ShowMap", ShowMap == true ? "True" : "False");
             SetConfig("Ingame_ShowGamemode", ShowGamemode == true ? "True" : "False");
             SetConfig("Ingame_ShowKDA", ShowKDA == true ? "True" : "False");
 
+            IngameSetting.State = state;
             IngameSetting.ShowMap = ShowMap;
             IngameSetting.ShowGamemode = ShowGamemode;
             IngameSetting.ShowKDA = ShowKDA;
