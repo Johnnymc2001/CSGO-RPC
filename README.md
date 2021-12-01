@@ -1,9 +1,5 @@
 # CSGO-RPC
 - Show to discord what you are doing in CS:GO
-- Library Used:
-  - DiscordRPC
-  - CSGSI
-  - NewtonsoftJson
 
 # Requirement
 - This app required [.NET 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48) to be installed on your computer to be able to run
@@ -35,11 +31,32 @@
             } 
         }
 
-  
+# Plaecholders
+- Match :
+	- {TScore}/{CTScore}  - Team's Score 
+	- {TName}/{CTName} - Team's Name
+
+	- {Phase} - Game Phase
+	- {Round} - Current Round
+	- {Mode} - Current Mode
+	- {Map} - Current Map
+
+	- {Kill}/{Death}/{Assist}/{Score}/{MVP} - Player's KDA
+
+- Player:
+	- {Name} - Player's Name
+	- {ID} - Player's ID
+	- {Team} - Player's Team
+	- {Version} - Game's Version
+	- {ProgramVersion} - Program's Version
+
+
+
+
 
 # Implementation
 
 ![Lobby](https://i.imgur.com/1xgCMOD.png)
 ![Ingame](https://i.imgur.com/D2DyXHc.png)
 
-![First Tab](https://i.imgur.com/zNGTdEm.png)
+![First Tab](https://i.imgur.com/4krTBB8.png)
