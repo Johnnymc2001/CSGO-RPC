@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btnStart = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbAutoStart = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.tabCSGO_btnInstall = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -44,6 +44,10 @@
             this.tabLobby_txtState = new System.Windows.Forms.TextBox();
             this.tabLobby_txtDetail = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tabIngame_txtLargeText = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tabIngame_txtSmallText = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabIngame_txtDetail = new System.Windows.Forms.TextBox();
             this.tabIngame_cbShowTeam = new System.Windows.Forms.CheckBox();
@@ -52,29 +56,19 @@
             this.tabIngame_btnSave = new System.Windows.Forms.Button();
             this.tabIngame_cbShowMap = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tabIngame_txtSmallText = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tabIngame_txtLargeText = new System.Windows.Forms.TextBox();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_Minimize = new System.Windows.Forms.Button();
+            this.btn_Exit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(11, 264);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // label2
             // 
@@ -84,40 +78,40 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 3;
             // 
-            // cbAutoStart
-            // 
-            this.cbAutoStart.AutoSize = true;
-            this.cbAutoStart.Location = new System.Drawing.Point(92, 268);
-            this.cbAutoStart.Name = "cbAutoStart";
-            this.cbAutoStart.Size = new System.Drawing.Size(68, 17);
-            this.cbAutoStart.TabIndex = 4;
-            this.cbAutoStart.Text = "Autostart";
-            this.cbAutoStart.UseVisualStyleBackColor = true;
-            this.cbAutoStart.CheckedChanged += new System.EventHandler(this.cbAutoStart_CheckedChanged);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.HotTrack = true;
+            this.tabControl1.Location = new System.Drawing.Point(11, 36);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(498, 250);
+            this.tabControl1.Size = new System.Drawing.Size(498, 262);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
             // 
+            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.lblVersion);
             this.tabPage1.Controls.Add(this.tabCSGO_btnInstall);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(490, 224);
+            this.tabPage1.Size = new System.Drawing.Size(490, 236);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "CS:GO";
+            this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(7, 215);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(51, 13);
+            this.lblVersion.TabIndex = 7;
+            this.lblVersion.Text = "Version : ";
             // 
             // tabCSGO_btnInstall
             // 
@@ -132,15 +126,17 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 6);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(296, 39);
+            this.label3.Size = new System.Drawing.Size(346, 45);
             this.label3.TabIndex = 2;
             this.label3.Text = "This program require custom Gamestate Intergration CFG File.\r\nClick Install to co" +
     "py the Gamestate Intergration CFG\r\nThe program use Port 4123 ";
             // 
             // tabPage2
             // 
+            this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage2.Controls.Add(this.tabLobby_btnSave);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.label5);
@@ -150,7 +146,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(490, 224);
+            this.tabPage2.Size = new System.Drawing.Size(490, 236);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lobby";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -209,6 +205,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.tabIngame_txtLargeText);
             this.tabPage3.Controls.Add(this.label12);
@@ -223,10 +220,42 @@
             this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(490, 224);
+            this.tabPage3.Size = new System.Drawing.Size(490, 236);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Ingame";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 102);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(90, 13);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Large Image Text";
+            // 
+            // tabIngame_txtLargeText
+            // 
+            this.tabIngame_txtLargeText.Location = new System.Drawing.Point(102, 99);
+            this.tabIngame_txtLargeText.Name = "tabIngame_txtLargeText";
+            this.tabIngame_txtLargeText.Size = new System.Drawing.Size(385, 20);
+            this.tabIngame_txtLargeText.TabIndex = 26;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 152);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(88, 13);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Small Image Text";
+            // 
+            // tabIngame_txtSmallText
+            // 
+            this.tabIngame_txtSmallText.Location = new System.Drawing.Point(101, 147);
+            this.tabIngame_txtSmallText.Name = "tabIngame_txtSmallText";
+            this.tabIngame_txtSmallText.Size = new System.Drawing.Size(385, 20);
+            this.tabIngame_txtSmallText.TabIndex = 24;
             // 
             // label11
             // 
@@ -302,72 +331,84 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "When your are in a match";
             // 
-            // openFileDialog1
+            // notifyIcon
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.notifyIcon.BalloonTipText = "The program has been minimized to tray";
+            this.notifyIcon.BalloonTipTitle = "CSGO - Discord Rich Presence";
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "CSGO - Discord Rich Presence";
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // tabPage4
+            // panel1
             // 
-            this.tabPage4.Controls.Add(this.label10);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(490, 224);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Placeholders";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.btn_Minimize);
+            this.panel1.Controls.Add(this.btn_Exit);
+            this.panel1.Location = new System.Drawing.Point(0, -1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(523, 35);
+            this.panel1.TabIndex = 6;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             // 
-            // label10
+            // label6
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 6);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(269, 208);
-            this.label10.TabIndex = 21;
-            this.label10.Text = resources.GetString("label10.Text");
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(132, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(258, 20);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "CSGO - Discord Rich Presence";
+            this.label6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             // 
-            // label12
+            // pictureBox1
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 152);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(88, 13);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "Small Image Text";
+            this.pictureBox1.Image = global::MainProgram.Properties.Resources.csgo_icon_42849;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(27, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             // 
-            // tabIngame_txtSmallText
+            // btn_Minimize
             // 
-            this.tabIngame_txtSmallText.Location = new System.Drawing.Point(101, 147);
-            this.tabIngame_txtSmallText.Name = "tabIngame_txtSmallText";
-            this.tabIngame_txtSmallText.Size = new System.Drawing.Size(385, 20);
-            this.tabIngame_txtSmallText.TabIndex = 24;
+            this.btn_Minimize.BackColor = System.Drawing.Color.MistyRose;
+            this.btn_Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Minimize.Location = new System.Drawing.Point(441, 5);
+            this.btn_Minimize.Name = "btn_Minimize";
+            this.btn_Minimize.Size = new System.Drawing.Size(29, 24);
+            this.btn_Minimize.TabIndex = 8;
+            this.btn_Minimize.UseVisualStyleBackColor = false;
+            this.btn_Minimize.Click += new System.EventHandler(this.btn_Minimize_Click);
             // 
-            // label13
+            // btn_Exit
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 102);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(90, 13);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "Large Image Text";
-            // 
-            // tabIngame_txtLargeText
-            // 
-            this.tabIngame_txtLargeText.Location = new System.Drawing.Point(102, 99);
-            this.tabIngame_txtLargeText.Name = "tabIngame_txtLargeText";
-            this.tabIngame_txtLargeText.Size = new System.Drawing.Size(385, 20);
-            this.tabIngame_txtLargeText.TabIndex = 26;
+            this.btn_Exit.BackColor = System.Drawing.Color.Red;
+            this.btn_Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Exit.Location = new System.Drawing.Point(476, 5);
+            this.btn_Exit.Name = "btn_Exit";
+            this.btn_Exit.Size = new System.Drawing.Size(29, 24);
+            this.btn_Exit.TabIndex = 7;
+            this.btn_Exit.UseVisualStyleBackColor = false;
+            this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 299);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClientSize = new System.Drawing.Size(521, 310);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.cbAutoStart);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnStart);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CSGO - Discord Rich Presence";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -378,25 +419,22 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox cbAutoStart;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button tabCSGO_btnInstall;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button tabLobby_btnSave;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
@@ -415,8 +453,13 @@
         private System.Windows.Forms.TextBox tabIngame_txtLargeText;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tabIngame_txtSmallText;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_Minimize;
+        private System.Windows.Forms.Button btn_Exit;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 

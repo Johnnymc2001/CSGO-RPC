@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,14 @@ namespace MainProgram
 {
     public partial class Form1 : Form
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         string version = "1.1";
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
@@ -71,19 +80,16 @@ namespace MainProgram
         {
             try
             {
-                //client.Invoke();
                 client.Initialize();
                 gsl.NewGameState += OnNewGameState;
                 gsl.Start();
 
-                btnStart.Enabled = false;
             }
             catch (Exception ex)
             {
                 DeInitService();
-
-                btnStart.Enabled = true;
                 MessageBox.Show("Failed to run, please try again!", ex.Message);
+                Environment.Exit(0);
 
             }
         }
@@ -113,7 +119,7 @@ namespace MainProgram
             var player = gs.Player;
             var stat = player.MatchStats;
 
-            string phase = gs.Round.Phase.ToString();
+            string phase = gs.Map.Phase.ToString() == "Warmup" ? "Warmup" : gs.Round.Phase.ToString();
 
             var t = game.TeamT;
             var ct = game.TeamCT;
@@ -127,12 +133,13 @@ namespace MainProgram
                 .Replace("{CTScore}", ct.Score.ToString() ?? "")
                 .Replace("{CTName}", ct.Name?.ToString() ?? "")
 
-                .Replace("{Phase}", phase)
-                .Replace("{Round}", game.Round.ToString() ?? "")
+                .Replace("{Phase}", phase ?? "Warmup")
+                .Replace("{Round}", (game.Round + 1).ToString() ?? "")
                 .Replace("{Map}", game.Name?.ToString() ?? "")
                 .Replace("{Mode}", game.Mode.ToString() ?? "")
 
                 .Replace("{Name}", player.Name)
+                .Replace("{Team}", player.Team.ToString())
                 .Replace("{Kill}", stat.Kills.ToString() ?? "")
                 .Replace("{Death}", stat.Deaths.ToString() ?? "")
                 .Replace("{Assist}", stat.Assists.ToString() ?? "")
@@ -180,7 +187,7 @@ namespace MainProgram
 
                 UpdatePresence($"{detail}", $"{state}", largeKey, largeText, smallKey, smallText);
             }
-            //Trace.Write(gs.JSON);
+            Trace.Write(gs.JSON);
         }
 
         private void UpdateGUI()
@@ -247,19 +254,6 @@ namespace MainProgram
             }
         }
 
-        private void cbAutoStart_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbAutoStart.Checked)
-            {
-                SetConfig("AutoStart", "True");
-            }
-            else
-            {
-                SetConfig("AutoStart", "False");
-
-            }
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             // Init for Lobby
@@ -284,12 +278,8 @@ namespace MainProgram
             tabIngame_txtLargeText.Text = IngameSetting.LargeText;
             tabIngame_txtSmallText.Text = IngameSetting.SmallText;
 
-            if (GetConfig("AutoStart") == "True")
-            {
-                // Init For Main
-                cbAutoStart.Checked = true;
-                InitService();
-            }
+            lblVersion.Text = $"Version : {version.ToString()}";
+            InitService();
         }
 
         // ================================================================ Tab CSGO ================================================================
@@ -407,6 +397,35 @@ namespace MainProgram
         private void tabIngame_cbShowTeam_CheckedChanged(object sender, EventArgs e)
         {
             tabIngame_txtSmallText.Enabled = tabIngame_cbShowTeam.Checked;
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            DeInitService();
+            Environment.Exit(0);
+        }
+
+        private void btn_Minimize_Click(object sender, EventArgs e)
+        {
+            Hide();
+            notifyIcon.Visible = true;
+            notifyIcon.ShowBalloonTip(1000);
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
         }
     }
 }
