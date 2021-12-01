@@ -13,7 +13,7 @@
   1. Locate your csgo cfg folder
   2. Copy gamestate config file included with releases or under here and copy it to the cfg folder
 
- [gamestate_integration_jrpc.cfg](https://github.com/Johnnymc2001/CSGO-RPC/blob/master/gamestate_integration_jrpc.cfg)
+  [gamestate_integration_jrpc.cfg](https://github.com/Johnnymc2001/CSGO-RPC/blob/master/gamestate_integration_jrpc.cfg)
        
        "CSGSI" 
         { 
