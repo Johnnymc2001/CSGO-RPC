@@ -1,5 +1,9 @@
 # CSGO-RPC
 - Show to discord what you are doing in CS:GO
+- Library Used:
+  - DiscordRPC
+  - CSGSI
+  - NewtonsoftJson
 
 # Requirement
 - This app required [.NET 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48) to be installed on your computer to be able to run
