@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnStart = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cbAutoStart = new System.Windows.Forms.CheckBox();
@@ -38,27 +39,31 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabLobby_btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabLobby_txtState = new System.Windows.Forms.TextBox();
             this.tabLobby_txtDetail = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tabIngame_txtDetail = new System.Windows.Forms.TextBox();
+            this.tabIngame_cbShowTeam = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabIngame_txtState = new System.Windows.Forms.TextBox();
-            this.tabIngame_cbShowKDA = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.tabIngame_btnSave = new System.Windows.Forms.Button();
-            this.tabIngame_cbShowGamemode = new System.Windows.Forms.CheckBox();
             this.tabIngame_cbShowMap = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tabIngame_cbShowTeam = new System.Windows.Forms.CheckBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tabIngame_txtSmallText = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tabIngame_txtLargeText = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStart
@@ -95,6 +100,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -137,7 +143,6 @@
             // 
             this.tabPage2.Controls.Add(this.tabLobby_btnSave);
             this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.tabLobby_txtState);
@@ -170,20 +175,10 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "When your are not in a match";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 182);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(174, 39);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Some Placeholder You Can Use\r\n{USERNAME} - Your steam\'s name\r\n{ID} - Your steam\'s" +
-    " ID\r\n";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 72);
+            this.label5.Location = new System.Drawing.Point(6, 62);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 4;
@@ -192,7 +187,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 43);
+            this.label4.Location = new System.Drawing.Point(6, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 3;
@@ -200,28 +195,30 @@
             // 
             // tabLobby_txtState
             // 
-            this.tabLobby_txtState.Location = new System.Drawing.Point(77, 69);
+            this.tabLobby_txtState.Location = new System.Drawing.Point(77, 59);
             this.tabLobby_txtState.Name = "tabLobby_txtState";
             this.tabLobby_txtState.Size = new System.Drawing.Size(407, 20);
             this.tabLobby_txtState.TabIndex = 1;
             // 
             // tabLobby_txtDetail
             // 
-            this.tabLobby_txtDetail.Location = new System.Drawing.Point(77, 40);
+            this.tabLobby_txtDetail.Location = new System.Drawing.Point(77, 30);
             this.tabLobby_txtDetail.Name = "tabLobby_txtDetail";
             this.tabLobby_txtDetail.Size = new System.Drawing.Size(407, 20);
             this.tabLobby_txtDetail.TabIndex = 0;
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.tabIngame_txtLargeText);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.tabIngame_txtSmallText);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.tabIngame_txtDetail);
             this.tabPage3.Controls.Add(this.tabIngame_cbShowTeam);
-            this.tabPage3.Controls.Add(this.label10);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.tabIngame_txtState);
-            this.tabPage3.Controls.Add(this.tabIngame_cbShowKDA);
-            this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.tabIngame_btnSave);
-            this.tabPage3.Controls.Add(this.tabIngame_cbShowGamemode);
             this.tabPage3.Controls.Add(this.tabIngame_cbShowMap);
             this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -231,20 +228,37 @@
             this.tabPage3.Text = "Ingame";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // label11
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 98);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(182, 78);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Placeholders :\r\n{TScore}/{CTScore}  - Team\'s Score\r\n{TName}/{CTName} - Team\'s Nam" +
-    "e\r\n{Phase} - Game Phase\r\n{Round} - Current Round\r\n\r\n";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 29);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 13);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Detail";
+            // 
+            // tabIngame_txtDetail
+            // 
+            this.tabIngame_txtDetail.Location = new System.Drawing.Point(101, 26);
+            this.tabIngame_txtDetail.Name = "tabIngame_txtDetail";
+            this.tabIngame_txtDetail.Size = new System.Drawing.Size(386, 20);
+            this.tabIngame_txtDetail.TabIndex = 22;
+            // 
+            // tabIngame_cbShowTeam
+            // 
+            this.tabIngame_cbShowTeam.AutoSize = true;
+            this.tabIngame_cbShowTeam.Location = new System.Drawing.Point(9, 132);
+            this.tabIngame_cbShowTeam.Name = "tabIngame_cbShowTeam";
+            this.tabIngame_cbShowTeam.Size = new System.Drawing.Size(83, 17);
+            this.tabIngame_cbShowTeam.TabIndex = 21;
+            this.tabIngame_cbShowTeam.Text = "Show Team";
+            this.tabIngame_cbShowTeam.UseVisualStyleBackColor = true;
+            this.tabIngame_cbShowTeam.CheckedChanged += new System.EventHandler(this.tabIngame_cbShowTeam_CheckedChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 36);
+            this.label7.Location = new System.Drawing.Point(6, 55);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 19;
@@ -252,29 +266,10 @@
             // 
             // tabIngame_txtState
             // 
-            this.tabIngame_txtState.Location = new System.Drawing.Point(44, 33);
+            this.tabIngame_txtState.Location = new System.Drawing.Point(101, 52);
             this.tabIngame_txtState.Name = "tabIngame_txtState";
-            this.tabIngame_txtState.Size = new System.Drawing.Size(443, 20);
+            this.tabIngame_txtState.Size = new System.Drawing.Size(386, 20);
             this.tabIngame_txtState.TabIndex = 18;
-            // 
-            // tabIngame_cbShowKDA
-            // 
-            this.tabIngame_cbShowKDA.AutoSize = true;
-            this.tabIngame_cbShowKDA.Location = new System.Drawing.Point(76, 78);
-            this.tabIngame_cbShowKDA.Name = "tabIngame_cbShowKDA";
-            this.tabIngame_cbShowKDA.Size = new System.Drawing.Size(78, 17);
-            this.tabIngame_cbShowKDA.TabIndex = 17;
-            this.tabIngame_cbShowKDA.Text = "Show KDA";
-            this.tabIngame_cbShowKDA.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 79);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Small Image";
             // 
             // tabIngame_btnSave
             // 
@@ -286,25 +281,16 @@
             this.tabIngame_btnSave.UseVisualStyleBackColor = true;
             this.tabIngame_btnSave.Click += new System.EventHandler(this.tabIngame_btnSave_Click);
             // 
-            // tabIngame_cbShowGamemode
-            // 
-            this.tabIngame_cbShowGamemode.AutoSize = true;
-            this.tabIngame_cbShowGamemode.Location = new System.Drawing.Point(92, 59);
-            this.tabIngame_cbShowGamemode.Name = "tabIngame_cbShowGamemode";
-            this.tabIngame_cbShowGamemode.Size = new System.Drawing.Size(110, 17);
-            this.tabIngame_cbShowGamemode.TabIndex = 14;
-            this.tabIngame_cbShowGamemode.Text = "Show Gamemode";
-            this.tabIngame_cbShowGamemode.UseVisualStyleBackColor = true;
-            // 
             // tabIngame_cbShowMap
             // 
             this.tabIngame_cbShowMap.AutoSize = true;
-            this.tabIngame_cbShowMap.Location = new System.Drawing.Point(9, 59);
+            this.tabIngame_cbShowMap.Location = new System.Drawing.Point(9, 82);
             this.tabIngame_cbShowMap.Name = "tabIngame_cbShowMap";
-            this.tabIngame_cbShowMap.Size = new System.Drawing.Size(77, 17);
+            this.tabIngame_cbShowMap.Size = new System.Drawing.Size(109, 17);
             this.tabIngame_cbShowMap.TabIndex = 13;
-            this.tabIngame_cbShowMap.Text = "Show Map";
+            this.tabIngame_cbShowMap.Text = "Show Map Image";
             this.tabIngame_cbShowMap.UseVisualStyleBackColor = true;
+            this.tabIngame_cbShowMap.CheckedChanged += new System.EventHandler(this.tabIngame_cbShowMap_CheckedChanged);
             // 
             // label9
             // 
@@ -320,15 +306,57 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // tabIngame_cbShowTeam
+            // tabPage4
             // 
-            this.tabIngame_cbShowTeam.AutoSize = true;
-            this.tabIngame_cbShowTeam.Location = new System.Drawing.Point(208, 59);
-            this.tabIngame_cbShowTeam.Name = "tabIngame_cbShowTeam";
-            this.tabIngame_cbShowTeam.Size = new System.Drawing.Size(83, 17);
-            this.tabIngame_cbShowTeam.TabIndex = 21;
-            this.tabIngame_cbShowTeam.Text = "Show Team";
-            this.tabIngame_cbShowTeam.UseVisualStyleBackColor = true;
+            this.tabPage4.Controls.Add(this.label10);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(490, 224);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Placeholders";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 6);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(269, 208);
+            this.label10.TabIndex = 21;
+            this.label10.Text = resources.GetString("label10.Text");
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 152);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(88, 13);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Small Image Text";
+            // 
+            // tabIngame_txtSmallText
+            // 
+            this.tabIngame_txtSmallText.Location = new System.Drawing.Point(101, 147);
+            this.tabIngame_txtSmallText.Name = "tabIngame_txtSmallText";
+            this.tabIngame_txtSmallText.Size = new System.Drawing.Size(385, 20);
+            this.tabIngame_txtSmallText.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 102);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(90, 13);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Large Image Text";
+            // 
+            // tabIngame_txtLargeText
+            // 
+            this.tabIngame_txtLargeText.Location = new System.Drawing.Point(102, 99);
+            this.tabIngame_txtLargeText.Name = "tabIngame_txtLargeText";
+            this.tabIngame_txtLargeText.Size = new System.Drawing.Size(385, 20);
+            this.tabIngame_txtLargeText.TabIndex = 26;
             // 
             // Form1
             // 
@@ -350,6 +378,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,21 +399,24 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button tabLobby_btnSave;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tabLobby_txtState;
         private System.Windows.Forms.TextBox tabLobby_txtDetail;
         private System.Windows.Forms.Button tabIngame_btnSave;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tabIngame_txtState;
-        private System.Windows.Forms.CheckBox tabIngame_cbShowKDA;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox tabIngame_cbShowGamemode;
         private System.Windows.Forms.CheckBox tabIngame_cbShowMap;
         private System.Windows.Forms.CheckBox tabIngame_cbShowTeam;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tabIngame_txtDetail;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tabIngame_txtLargeText;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tabIngame_txtSmallText;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label10;
     }
 }
 
