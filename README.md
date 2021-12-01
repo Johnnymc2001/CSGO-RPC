@@ -1,5 +1,9 @@
 # CSGO-RPC
 - Show to discord what you are doing in CS:GO
+- Library Used:
+  - DiscordRPC
+  - CSGSI
+  - NewtonsoftJson
 
 # Requirement
 - This app required [.NET 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48) to be installed on your computer to be able to run
@@ -11,9 +15,30 @@
   2. Press Install
   ### Manual
   1. Locate your csgo cfg folder
-  2. Copy gamestate config file included with releases and copy it there
+  2. Copy gamestate config file included with releases or under here and copy it to the cfg folder
 
-# Implement
+  [gamestate_integration_jrpc.cfg](https://github.com/Johnnymc2001/CSGO-RPC/blob/master/gamestate_integration_jrpc.cfg)
+       
+       "CSGSI" 
+        { 
+        "uri" "http://localhost:4123" 
+        "timeout" "5.0" 
+        "data" 
+            { 
+                "provider" "1" 
+                "map" "1" 
+                "round" "1" 
+                "player_id" "1" 
+                "player_weapons" "1" 
+                "player_match_stats" "1" 
+                "player_state" "1" 
+            } 
+        }
+
+  
+
+# Implementation
+
 ![Lobby](https://i.imgur.com/1xgCMOD.png)
 ![Ingame](https://i.imgur.com/D2DyXHc.png)
 
