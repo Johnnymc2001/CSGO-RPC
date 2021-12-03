@@ -1,4 +1,5 @@
 ﻿using CSGSI;
+using CSGSI.Nodes;
 using DiscordRPC;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -139,7 +140,7 @@ namespace MainProgram
                 .Replace("{Mode}", game.Mode.ToString() ?? "")
 
                 .Replace("{Name}", player.Name)
-                .Replace("{Team}", player.Team.ToString())
+                .Replace("{Team}", player.Team.ToString() ?? "")
                 .Replace("{Kill}", stat.Kills.ToString() ?? "")
                 .Replace("{Death}", stat.Deaths.ToString() ?? "")
                 .Replace("{Assist}", stat.Assists.ToString() ?? "")
@@ -155,6 +156,8 @@ namespace MainProgram
 
         private void OnNewGameState(GameState gs)
         {
+            Trace.Write(gs.JSON);
+
             var player = gs.Player;
             var activity = player.Activity;
 
@@ -170,24 +173,34 @@ namespace MainProgram
             }
             else if (activity.ToString().ToLower() == "playing")
             {
-                var game = gs.Map;
-                var stat = player.MatchStats;
+                try
+                {
 
-                string map = game.Name;
-                string largeKey = "";
-                string smallKey = "";
 
-                string detail = ParsePlaceHolder(gs, IngameSetting.Detail);
-                string state = ParsePlaceHolder(gs, IngameSetting.State);
-                string largeText = ParsePlaceHolder(gs, IngameSetting.LargeText);
-                string smallText = ParsePlaceHolder(gs, IngameSetting.SmallText);
+                    var game = gs.Map;
 
-                if (IngameSetting.ShowMap) largeKey = $"{map}";
-                if (IngameSetting.ShowTeam) smallKey = player.Team.ToString() == "T" ? "terrorists" : "counterterrorists" ?? "spec";
 
-                UpdatePresence($"{detail}", $"{state}", largeKey, largeText, smallKey, smallText);
+                    var stat = player.MatchStats;
+
+                    string map = game?.Name ?? "";
+                    string largeKey = "";
+                    string smallKey = "";
+
+                    string detail = ParsePlaceHolder(gs, IngameSetting.Detail);
+                    string state = ParsePlaceHolder(gs, IngameSetting.State);
+                    string largeText = ParsePlaceHolder(gs, IngameSetting.LargeText);
+                    string smallText = ParsePlaceHolder(gs, IngameSetting.SmallText);
+
+                    if (IngameSetting.ShowMap) largeKey = $"{map}";
+                    if (IngameSetting.ShowTeam) smallKey = player.Team.ToString() == "T" ? "terrorists" : "counterterrorists" ?? "spec";
+
+                    UpdatePresence($"{detail}", $"{state}", largeKey, largeText, smallKey, smallText);
+                }
+                catch
+                {
+
+                }
             }
-            Trace.Write(gs.JSON);
         }
 
         private void UpdateGUI()
@@ -410,8 +423,13 @@ namespace MainProgram
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-            DeInitService();
-            Environment.Exit(0);
+            DialogResult f = MessageBox.Show("Are you sure you want to exit the program? The discord rich presence will be stopped!", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (f == DialogResult.Yes)
+            {
+                DeInitService();
+                Environment.Exit(0);
+            }
         }
 
         private void btn_Minimize_Click(object sender, EventArgs e)
