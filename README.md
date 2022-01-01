@@ -31,7 +31,7 @@
             } 
         }
 
-# Plaecholders
+# Placeholders
 - Match :
 	- {TScore}/{CTScore}  - Team's Score 
 	- {TName}/{CTName} - Team's Name
