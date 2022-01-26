@@ -51,7 +51,7 @@
 	- {Version} - Game's Version
 	- {ProgramVersion} - Program's Version
 
-
+// Idle Setting Only Have {FriendCode, Username and ID}
 
 
 
