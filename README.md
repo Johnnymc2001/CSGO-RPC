@@ -44,6 +44,7 @@
 	- {Kill}/{Death}/{Assist}/{Score}/{MVP} - Player's KDA
 
 - Player:
+	- {FriendCode} - Your CSGO FriendCode
 	- {Name} - Player's Name
 	- {ID} - Player's ID
 	- {Team} - Player's Team
