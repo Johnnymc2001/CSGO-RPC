@@ -17,6 +17,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Configuration = System.Configuration.Configuration;
+using Flurl;
+using Flurl.Http;
+
 
 namespace MainProgram
 {
@@ -35,6 +38,11 @@ namespace MainProgram
 
         GameStateListener gsl = new GameStateListener(4123);
         DiscordRpcClient client = new DiscordRpcClient("494378226857279498", -1);
+        DateTime startTime;
+
+        string userId = "";
+        string friendCode = "";
+
 
         public static class IdleSetting
         {
@@ -55,9 +63,18 @@ namespace MainProgram
 
         public Form1()
         {
+            startTime = DateTime.UtcNow;
             InitializeComponent();
         }
         // =========================================================== Main Function ===========================================================
+        private async void generateFriendCode(string id)
+        {
+            string url = "https://johnny-nestjs.herokuapp.com/friend-code/" + id;
+            userId = id;
+            FriendCode fc = await url.GetJsonAsync<FriendCode>();
+            friendCode = fc.code;
+            txtFriendCode.Text = friendCode;
+        }
 
         private void SetConfig(string key, string value)
         {
@@ -149,25 +166,44 @@ namespace MainProgram
 
                 .Replace("{ID}", player.SteamID.ToString())
                 .Replace("{Version}", gs.Provider.Version.ToString())
-                .Replace("{ProgramVersion}", version);
+                .Replace("{ProgramVersion}", version)
+                .Replace("{FriendCode}", friendCode);
+
+            return str;
+        }
+
+        private string ParsePlaceHolderIdle(GameState gs, string str)
+        {
+            var player = gs.Player;
+
+            var name = player.Name;
+            var id = player.SteamID;
+
+            if (str == null) return "";
+
+            str = str
+                .Replace("{Username}", name)
+                .Replace("{ID}", id)
+                .Replace("{FriendCode}", friendCode);
 
             return str;
         }
 
         private void OnNewGameState(GameState gs)
         {
-            Trace.Write(gs.JSON);
+            if (friendCode.Equals(""))
+            {
+                friendCode = "Generating...";
+                generateFriendCode(gs.Player.SteamID);
+            }
 
             var player = gs.Player;
             var activity = player.Activity;
 
             if (activity.ToString().ToLower() == "menu")
             {
-                var name = player.Name;
-                var id = player.SteamID;
-
-                var detail = IdleSetting.Detail.Replace("{USERNAME}", name).Replace("{ID}", id);
-                var state = IdleSetting.State.Replace("{USERNAME}", name).Replace("{ID}", id);
+                var detail = ParsePlaceHolderIdle(gs, IdleSetting.Detail);
+                var state = ParsePlaceHolderIdle(gs, IdleSetting.State);
 
                 UpdatePresence(detail, state, "csgo", "Playing CSGO", "csgo", "Playing CSGO");
             }
@@ -175,8 +211,6 @@ namespace MainProgram
             {
                 try
                 {
-
-
                     var game = gs.Map;
 
 
@@ -224,7 +258,10 @@ namespace MainProgram
                     LargeImageText = largeText,
                     SmallImageKey = smallKey,
                     SmallImageText = smallText,
-                }
+
+                },
+                Timestamps = new Timestamps()
+                
 
             };
 
@@ -372,7 +409,7 @@ namespace MainProgram
             IdleSetting.Detail = detail;
             IdleSetting.State = state;
 
-            MessageBox.Show("Setting saved!");
+            MessageBox.Show("Setting successfulyl saved!", "Config", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void tabIngame_btnSave_Click(object sender, EventArgs e)
@@ -399,7 +436,7 @@ namespace MainProgram
             IngameSetting.LargeText = largeText;
             IngameSetting.SmallText = smallText;
 
-            MessageBox.Show("Setting saved!");
+            MessageBox.Show("Setting successfulyl saved!", "Config", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void tabIngame_cbShowMap_CheckedChanged(object sender, EventArgs e)
@@ -444,6 +481,11 @@ namespace MainProgram
             Show();
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
+        }
+
+        private void btnRefreshFriendCode_Click(object sender, EventArgs e)
+        {
+            generateFriendCode(userId);
         }
     }
 }

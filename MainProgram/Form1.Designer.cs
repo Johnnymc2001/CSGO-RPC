@@ -63,6 +63,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_Minimize = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
+            this.txtFriendCode = new System.Windows.Forms.TextBox();
+            this.btnRefreshFriendCode = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -94,6 +97,9 @@
             // tabPage1
             // 
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.btnRefreshFriendCode);
+            this.tabPage1.Controls.Add(this.txtFriendCode);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.lblVersion);
             this.tabPage1.Controls.Add(this.tabCSGO_btnInstall);
@@ -112,10 +118,10 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(7, 51);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(283, 30);
+            this.label8.Size = new System.Drawing.Size(362, 30);
             this.label8.TabIndex = 8;
-            this.label8.Text = "This program must be running at all times. \r\nYou can minimize it\'s for your conve" +
-    "nience";
+            this.label8.Text = "This program must be running for the presence to work!\r\nYou can minimize it if yo" +
+    "u like";
             // 
             // lblVersion
             // 
@@ -411,6 +417,32 @@
             this.btn_Exit.UseVisualStyleBackColor = false;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
+            // txtFriendCode
+            // 
+            this.txtFriendCode.Location = new System.Drawing.Point(331, 208);
+            this.txtFriendCode.Name = "txtFriendCode";
+            this.txtFriendCode.Size = new System.Drawing.Size(89, 20);
+            this.txtFriendCode.TabIndex = 9;
+            // 
+            // btnRefreshFriendCode
+            // 
+            this.btnRefreshFriendCode.Location = new System.Drawing.Point(425, 206);
+            this.btnRefreshFriendCode.Name = "btnRefreshFriendCode";
+            this.btnRefreshFriendCode.Size = new System.Drawing.Size(57, 22);
+            this.btnRefreshFriendCode.TabIndex = 10;
+            this.btnRefreshFriendCode.Text = "Refresh";
+            this.btnRefreshFriendCode.UseVisualStyleBackColor = true;
+            this.btnRefreshFriendCode.Click += new System.EventHandler(this.btnRefreshFriendCode_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(331, 189);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Friend Code";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -476,6 +508,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtFriendCode;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnRefreshFriendCode;
     }
 }
 
