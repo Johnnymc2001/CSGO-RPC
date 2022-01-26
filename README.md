@@ -31,7 +31,7 @@
             } 
         }
 
-# Plaecholders
+# Placeholders
 - Match :
 	- {TScore}/{CTScore}  - Team's Score 
 	- {TName}/{CTName} - Team's Name
@@ -44,13 +44,14 @@
 	- {Kill}/{Death}/{Assist}/{Score}/{MVP} - Player's KDA
 
 - Player:
+	- {FriendCode} - Your CSGO FriendCode
 	- {Name} - Player's Name
 	- {ID} - Player's ID
 	- {Team} - Player's Team
 	- {Version} - Game's Version
 	- {ProgramVersion} - Program's Version
 
-
+// Idle Setting Only Have {FriendCode, Username and ID}
 
 
 
