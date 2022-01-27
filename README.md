@@ -60,4 +60,4 @@
 ![Lobby](https://i.imgur.com/1xgCMOD.png)
 ![Ingame](https://i.imgur.com/D2DyXHc.png)
 
-![First Tab](https://i.imgur.com/4krTBB8.png)
+![First Tab](https://i.imgur.com/L4Sfolf.png)
