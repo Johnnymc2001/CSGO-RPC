@@ -33,6 +33,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnRefreshFriendCode = new System.Windows.Forms.Button();
+            this.txtFriendCode = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.tabCSGO_btnInstall = new System.Windows.Forms.Button();
@@ -58,18 +61,20 @@
             this.tabIngame_cbShowMap = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_Minimize = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
-            this.txtFriendCode = new System.Windows.Forms.TextBox();
-            this.btnRefreshFriendCode = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblLastest = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -97,6 +102,7 @@
             // tabPage1
             // 
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.lblLastest);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.btnRefreshFriendCode);
             this.tabPage1.Controls.Add(this.txtFriendCode);
@@ -112,6 +118,32 @@
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(331, 189);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Friend Code";
+            // 
+            // btnRefreshFriendCode
+            // 
+            this.btnRefreshFriendCode.Location = new System.Drawing.Point(425, 206);
+            this.btnRefreshFriendCode.Name = "btnRefreshFriendCode";
+            this.btnRefreshFriendCode.Size = new System.Drawing.Size(57, 22);
+            this.btnRefreshFriendCode.TabIndex = 10;
+            this.btnRefreshFriendCode.Text = "Refresh";
+            this.btnRefreshFriendCode.UseVisualStyleBackColor = true;
+            this.btnRefreshFriendCode.Click += new System.EventHandler(this.btnRefreshFriendCode_Click);
+            // 
+            // txtFriendCode
+            // 
+            this.txtFriendCode.Location = new System.Drawing.Point(331, 208);
+            this.txtFriendCode.Name = "txtFriendCode";
+            this.txtFriendCode.Size = new System.Drawing.Size(89, 20);
+            this.txtFriendCode.TabIndex = 9;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -126,7 +158,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(7, 215);
+            this.lblVersion.Location = new System.Drawing.Point(2, 202);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(51, 13);
             this.lblVersion.TabIndex = 7;
@@ -354,9 +386,32 @@
             // 
             this.notifyIcon.BalloonTipText = "The program has been minimized to tray";
             this.notifyIcon.BalloonTipTitle = "CSGO - Discord Rich Presence";
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "CSGO - Discord Rich Presence";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(104, 48);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -417,31 +472,14 @@
             this.btn_Exit.UseVisualStyleBackColor = false;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
-            // txtFriendCode
+            // lblLastest
             // 
-            this.txtFriendCode.Location = new System.Drawing.Point(331, 208);
-            this.txtFriendCode.Name = "txtFriendCode";
-            this.txtFriendCode.Size = new System.Drawing.Size(89, 20);
-            this.txtFriendCode.TabIndex = 9;
-            // 
-            // btnRefreshFriendCode
-            // 
-            this.btnRefreshFriendCode.Location = new System.Drawing.Point(425, 206);
-            this.btnRefreshFriendCode.Name = "btnRefreshFriendCode";
-            this.btnRefreshFriendCode.Size = new System.Drawing.Size(57, 22);
-            this.btnRefreshFriendCode.TabIndex = 10;
-            this.btnRefreshFriendCode.Text = "Refresh";
-            this.btnRefreshFriendCode.UseVisualStyleBackColor = true;
-            this.btnRefreshFriendCode.Click += new System.EventHandler(this.btnRefreshFriendCode_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(331, 189);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 13);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Friend Code";
+            this.lblLastest.AutoSize = true;
+            this.lblLastest.Location = new System.Drawing.Point(2, 218);
+            this.lblLastest.Name = "lblLastest";
+            this.lblLastest.Size = new System.Drawing.Size(47, 13);
+            this.lblLastest.TabIndex = 13;
+            this.lblLastest.Text = "Lastest :";
             // 
             // Form1
             // 
@@ -466,6 +504,7 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -511,6 +550,10 @@
         private System.Windows.Forms.TextBox txtFriendCode;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnRefreshFriendCode;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private System.Windows.Forms.Label lblLastest;
     }
 }
 

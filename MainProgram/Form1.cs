@@ -19,7 +19,8 @@ using System.Windows.Forms;
 using Configuration = System.Configuration.Configuration;
 using Flurl;
 using Flurl.Http;
-
+using Octokit;
+using Application = System.Windows.Forms.Application;
 
 namespace MainProgram
 {
@@ -33,11 +34,11 @@ namespace MainProgram
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        string version = "1.2";
+        string version = "v1.2.1";
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
         GameStateListener gsl = new GameStateListener(4123);
-        DiscordRpcClient client = new DiscordRpcClient("494378226857279498", -1);
+        DiscordRpcClient discordRPCClient = new DiscordRpcClient("494378226857279498", -1);
         DateTime startTime;
 
         string userId = "";
@@ -69,11 +70,38 @@ namespace MainProgram
         // =========================================================== Main Function ===========================================================
         private async void generateFriendCode(string id)
         {
-            string url = "https://johnny-nestjs.herokuapp.com/friend-code/" + id;
-            userId = id;
-            FriendCode fc = await url.GetJsonAsync<FriendCode>();
-            friendCode = fc.code;
-            txtFriendCode.Text = friendCode;
+            try
+            {
+                btnRefreshFriendCode.Enabled = false;
+                string url = "https://johnny-nestjs.herokuapp.com/friend-code/" + id;
+                userId = id;
+                FriendCode fc = await url.GetJsonAsync<FriendCode>();
+                friendCode = fc.code;
+                txtFriendCode.Text = friendCode;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                btnRefreshFriendCode.Enabled = true;
+            }
+        }
+
+        private async void getLastestVersion()
+        {
+            try
+            {
+                GitHubClient client = new GitHubClient(new ProductHeaderValue("SomeName"));
+                var releases = await client.Repository.GetAllTags("Johnnymc2001", "CSGO-RPC");
+                string tagName = releases[0].Name;
+                if (tagName.Equals(version)) lblLastest.ForeColor = Color.Green;
+                else lblLastest.ForeColor = Color.Red;
+
+                lblLastest.Text = $"Lastest : {tagName}";
+            }
+            catch { lblLastest.Text = $"Lastest : Can't get :P"; }
         }
 
         private void SetConfig(string key, string value)
@@ -98,7 +126,7 @@ namespace MainProgram
         {
             try
             {
-                client.Initialize();
+                discordRPCClient.Initialize();
                 gsl.NewGameState += OnNewGameState;
                 gsl.Start();
 
@@ -114,14 +142,14 @@ namespace MainProgram
 
         private void DeInitService()
         {
-            if (client.IsInitialized)
+            if (discordRPCClient.IsInitialized)
             {
-                client.Deinitialize();
+                discordRPCClient.Deinitialize();
             }
 
-            if (!client.IsDisposed)
+            if (!discordRPCClient.IsDisposed)
             {
-                client.Dispose();
+                discordRPCClient.Dispose();
             }
 
             if (gsl.Running)
@@ -237,17 +265,12 @@ namespace MainProgram
             }
         }
 
-        private void UpdateGUI()
-        {
-
-        }
-
         private void UpdatePresence(
             string title, string detail,
             string largeKey = "none", string largeText = "",
             string smallKey = "none", string smallText = "")
         {
-            var curPres = client.CurrentPresence;
+            var curPres = discordRPCClient.CurrentPresence;
             var pres = new RichPresence()
             {
                 Details = title,
@@ -261,7 +284,7 @@ namespace MainProgram
 
                 },
                 Timestamps = new Timestamps()
-                
+
 
             };
 
@@ -269,21 +292,41 @@ namespace MainProgram
             {
                 if (curPres != pres)
                 {
-                    client.SetPresence(pres);
+                    discordRPCClient.SetPresence(pres);
                 }
             }
             else
             {
-                client.SetPresence(pres);
+                discordRPCClient.SetPresence(pres);
             }
 
         }
 
         // =========================================================== Main Form Events ===========================================================
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void ConfirmExit()
         {
-            InitService();
+            DialogResult f = MessageBox.Show("Are you sure you want to exit the program?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (f == DialogResult.Yes)
+            {
+                DeInitService();
+                Environment.Exit(0);
+            }
+        }
+
+        private void ShowWindow()
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        }
+
+        private void HideWindow()
+        {
+            Hide();
+            notifyIcon.Visible = true;
+            notifyIcon.ShowBalloonTip(1000);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -306,6 +349,8 @@ namespace MainProgram
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            getLastestVersion();
+
             // Init for Lobby
             IdleSetting.Detail = GetConfig("Lobby_Detail");
             IdleSetting.State = GetConfig("Lobby_State");
@@ -460,32 +505,32 @@ namespace MainProgram
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-            DialogResult f = MessageBox.Show("Are you sure you want to exit the program? The discord rich presence will be stopped!", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (f == DialogResult.Yes)
-            {
-                DeInitService();
-                Environment.Exit(0);
-            }
+            ConfirmExit();
         }
 
         private void btn_Minimize_Click(object sender, EventArgs e)
         {
-            Hide();
-            notifyIcon.Visible = true;
-            notifyIcon.ShowBalloonTip(1000);
+            HideWindow();
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Show();
-            this.WindowState = FormWindowState.Normal;
-            notifyIcon.Visible = false;
+            ShowWindow();
         }
 
         private void btnRefreshFriendCode_Click(object sender, EventArgs e)
         {
             generateFriendCode(userId);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfirmExit();
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowWindow();
         }
     }
 }
