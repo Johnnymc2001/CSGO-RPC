@@ -34,7 +34,7 @@ namespace MainProgram
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        string version = "v1.2.1-fixapi";
+        string version = "v1.2.2";
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
         GameStateListener gsl = new GameStateListener(4123);
@@ -94,7 +94,7 @@ namespace MainProgram
         {
             try
             {
-                GitHubClient client = new GitHubClient(new ProductHeaderValue("SomeName"));
+                GitHubClient client = new GitHubClient(new ProductHeaderValue("Chrome"));
                 var releases = await client.Repository.GetAllTags("Johnnymc2001", "CSGO-RPC");
                 string tagName = releases[0].Name;
                 if (tagName.Equals(version)) lblLastest.ForeColor = Color.Green;
