@@ -43,6 +43,7 @@ namespace MainProgram
 
         string userId = "";
         string friendCode = "";
+        string apiEndpoint = "https://johnnyapi.herokuapp.com";
 
 
         public static class IdleSetting
@@ -73,7 +74,7 @@ namespace MainProgram
             try
             {
                 btnRefreshFriendCode.Enabled = false;
-                string url = "https://johnny-nestjs.herokuapp.com/friend-code/" + id;
+                string url = $"{apiEndpoint}/csgo/id-to-friendcode/{id}";
                 userId = id;
                 FriendCode fc = await url.GetJsonAsync<FriendCode>();
                 friendCode = fc.code;
