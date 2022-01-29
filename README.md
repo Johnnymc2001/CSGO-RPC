@@ -54,7 +54,6 @@
 // Idle Setting Only Have {FriendCode, Username and ID}
 
 
-
 # Implementation
 
 ![Lobby](https://i.imgur.com/1xgCMOD.png)
