@@ -34,7 +34,7 @@ namespace MainProgram
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        string version = "v1.2.1";
+        string version = "v1.2.1-fixapi";
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
         GameStateListener gsl = new GameStateListener(4123);
