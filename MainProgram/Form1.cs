@@ -76,8 +76,8 @@ namespace MainProgram
                 btnRefreshFriendCode.Enabled = false;
                 string url = $"{apiEndpoint}/csgo/id-to-friendcode/{id}";
                 userId = id;
-                FriendCode fc = await url.GetJsonAsync<FriendCode>();
-                friendCode = fc.code;
+                UserInfoDTO fc = await url.GetJsonAsync<UserInfoDTO>();
+                friendCode = fc.friendcode;
                 txtFriendCode.Text = friendCode;
             }
             catch
