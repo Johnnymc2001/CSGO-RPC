@@ -50,6 +50,10 @@ namespace MainProgram
         {
             public static string Detail { get; set; } = "Idle";
             public static string State { get; set; } = "Chillin in the menu";
+
+            public static bool ShowButton { get; set; }
+            public static string ButtonLabel { get; set; }
+            public static string ButtonUrl { get; set;}
         }
 
         public static class IngameSetting
@@ -61,6 +65,10 @@ namespace MainProgram
             public static string State { get; set; }
             public static string LargeText { get; set; }
             public static string SmallText { get; set; }
+
+            public static bool ShowButton { get; set; }
+            public static string ButtonLabel { get; set; }
+            public static string ButtonUrl { get; set; }
         }
 
         public Form1()
@@ -234,7 +242,11 @@ namespace MainProgram
                 var detail = ParsePlaceHolderIdle(gs, IdleSetting.Detail);
                 var state = ParsePlaceHolderIdle(gs, IdleSetting.State);
 
-                UpdatePresence(detail, state, "csgo", "Playing CSGO", "csgo", "Playing CSGO");
+                bool showButton = IdleSetting.ShowButton;
+                string buttonLabel = ParsePlaceHolder(gs, IdleSetting.ButtonLabel);
+                string buttonUrl = ParsePlaceHolder(gs, IdleSetting.ButtonUrl);
+
+                UpdatePresence(detail, state, "csgo", "Playing CSGO", "csgo", "Playing CSGO", showButton, buttonLabel, buttonUrl);
             }
             else if (activity.ToString().ToLower() == "playing")
             {
@@ -254,10 +266,14 @@ namespace MainProgram
                     string largeText = ParsePlaceHolder(gs, IngameSetting.LargeText);
                     string smallText = ParsePlaceHolder(gs, IngameSetting.SmallText);
 
+                    bool showButton = IngameSetting.ShowButton;
+                    string buttonLabel = ParsePlaceHolder(gs, IngameSetting.ButtonLabel);
+                    string buttonUrl = ParsePlaceHolder(gs, IngameSetting.ButtonUrl);
+
                     if (IngameSetting.ShowMap) largeKey = $"{map}";
                     if (IngameSetting.ShowTeam) smallKey = player.Team.ToString() == "T" ? "terrorists" : "counterterrorists" ?? "spec";
 
-                    UpdatePresence($"{detail}", $"{state}", largeKey, largeText, smallKey, smallText);
+                    UpdatePresence($"{detail}", $"{state}", largeKey, largeText, smallKey, smallText, showButton, buttonLabel, buttonUrl);
                 }
                 catch
                 {
@@ -269,8 +285,17 @@ namespace MainProgram
         private void UpdatePresence(
             string title, string detail,
             string largeKey = "none", string largeText = "",
-            string smallKey = "none", string smallText = "")
+            string smallKey = "none", string smallText = "",
+            bool showButton = false, string buttonLabel = "", string buttonUrl = "")
         {
+            var buttons = new List<DiscordRPC.Button>();
+
+            var button = new DiscordRPC.Button();
+            button.Label = buttonLabel;
+            button.Url = buttonUrl;
+
+            buttons.Add(button);
+
             var curPres = discordRPCClient.CurrentPresence;
             var pres = new RichPresence()
             {
@@ -284,7 +309,8 @@ namespace MainProgram
                     SmallImageText = smallText,
 
                 },
-                Timestamps = new Timestamps()
+                Timestamps = new Timestamps(),
+                Buttons = showButton == true ? buttons.ToArray() : null
 
 
             };
@@ -355,9 +381,15 @@ namespace MainProgram
             // Init for Lobby
             IdleSetting.Detail = GetConfig("Lobby_Detail");
             IdleSetting.State = GetConfig("Lobby_State");
+            IdleSetting.ShowButton = GetConfig("Lobby_ShowButton") == "True";
+            IdleSetting.ButtonLabel = GetConfig("Lobby_ButtonLabel");
+            IdleSetting.ButtonUrl = GetConfig("Lobby_ButtonUrl");
 
             tabLobby_txtDetail.Text = IdleSetting.Detail;
             tabLobby_txtState.Text = IdleSetting.State;
+            tabLobby_cbShowButton.Checked = IdleSetting.ShowButton;
+            tabLobby_txtButtonLabel.Text = IdleSetting.ButtonLabel;
+            tabLobby_txtButtonUrl.Text = IdleSetting.ButtonUrl;
 
             // Init For Ingame
             IngameSetting.ShowMap = GetConfig("Ingame_ShowMap") == "True";
@@ -367,12 +399,20 @@ namespace MainProgram
             IngameSetting.LargeText = GetConfig("Ingame_LargeText");
             IngameSetting.SmallText = GetConfig("Ingame_SmallText");
 
+            IngameSetting.ShowButton = GetConfig("Ingame_ShowButton") == "True";
+            IngameSetting.ButtonLabel = GetConfig("Ingame_ButtonLabel");
+            IngameSetting.ButtonUrl = GetConfig("Ingame_ButtonUrl");
+
             tabIngame_cbShowMap.Checked = IngameSetting.ShowMap;
             tabIngame_cbShowTeam.Checked = IngameSetting.ShowTeam;
             tabIngame_txtState.Text = IngameSetting.State;
             tabIngame_txtDetail.Text = IngameSetting.Detail;
             tabIngame_txtLargeText.Text = IngameSetting.LargeText;
             tabIngame_txtSmallText.Text = IngameSetting.SmallText;
+
+            tabIngame_cbShowButton.Checked = IngameSetting.ShowButton;
+            tabIngame_txtButtonLabel.Text = IngameSetting.ButtonLabel;
+            tabIngame_txtButtonUrl.Text = IngameSetting.ButtonUrl;
 
             lblVersion.Text = $"Version : {version.ToString()}";
             InitService();
@@ -448,12 +488,21 @@ namespace MainProgram
         {
             string detail = tabLobby_txtDetail.Text;
             string state = tabLobby_txtState.Text;
+            bool showButton = tabLobby_cbShowButton.Checked;
+            string buttonLabel = tabLobby_txtButtonLabel.Text;
+            string buttonUrl = tabLobby_txtButtonUrl.Text;
 
             SetConfig("Lobby_Detail", detail);
             SetConfig("Lobby_State", state);
+            SetConfig("Lobby_ShowButton", showButton == true ? "True" : "False");
+            SetConfig("Lobby_ButtonLabel", buttonLabel);
+            SetConfig("Lobby_ButtonUrl", buttonUrl);
 
             IdleSetting.Detail = detail;
             IdleSetting.State = state;
+            IdleSetting.ShowButton = showButton;
+            IdleSetting.ButtonLabel = buttonLabel;
+            IdleSetting.ButtonUrl = buttonUrl;
 
             MessageBox.Show("Setting successfulyl saved!", "Config", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -467,6 +516,9 @@ namespace MainProgram
             bool ShowMap = tabIngame_cbShowMap.Checked ? true : false;
             bool ShowTeam = tabIngame_cbShowTeam.Checked ? true : false;
 
+            bool showButton = tabIngame_cbShowButton.Checked;
+            string buttonLabel = tabIngame_txtButtonLabel.Text;
+            string buttonUrl = tabIngame_txtButtonUrl.Text;
 
             SetConfig("Ingame_Detail", detail);
             SetConfig("Ingame_State", state);
@@ -475,12 +527,19 @@ namespace MainProgram
             SetConfig("Ingame_LargeText", largeText);
             SetConfig("Ingame_SmallText", smallText);
 
+            SetConfig("Ingame_ShowButton", showButton == true ? "True" : "False");
+            SetConfig("Ingame_ButtonLabel", buttonLabel);
+            SetConfig("Ingame_ButtonUrl", buttonUrl);
+
             IngameSetting.Detail = detail;
             IngameSetting.State = state;
             IngameSetting.ShowMap = ShowMap;
             IngameSetting.ShowTeam = ShowTeam;
             IngameSetting.LargeText = largeText;
             IngameSetting.SmallText = smallText;
+            IngameSetting.ShowButton = showButton;
+            IngameSetting.ButtonLabel = buttonLabel;
+            IngameSetting.ButtonUrl = buttonUrl;
 
             MessageBox.Show("Setting successfulyl saved!", "Config", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -493,6 +552,18 @@ namespace MainProgram
         private void tabIngame_cbShowTeam_CheckedChanged(object sender, EventArgs e)
         {
             tabIngame_txtSmallText.Enabled = tabIngame_cbShowTeam.Checked;
+        }
+
+        private void tabLobby_cbShowButton_CheckedChanged(object sender, EventArgs e)
+        {
+            tabLobby_txtButtonLabel.Enabled = tabLobby_cbShowButton.Checked;
+            tabLobby_txtButtonUrl.Enabled = tabLobby_cbShowButton.Checked;
+        }
+
+        private void tabIngame_cbShowButton_CheckedChanged(object sender, EventArgs e)
+        {
+            tabIngame_txtButtonLabel.Enabled = tabIngame_cbShowButton.Checked;
+            tabIngame_txtButtonUrl.Enabled = tabIngame_cbShowButton.Checked;
         }
 
         private void OnMouseDown(object sender, MouseEventArgs e)
