@@ -10,6 +10,5 @@ namespace MainProgram
     {
         public string steamId { get; set; }
         public string friendcode { get; set; }
-        public string name { get; set; }
     }
 }

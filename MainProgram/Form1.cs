@@ -34,7 +34,7 @@ namespace MainProgram
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        string version = "v1.3";
+        string version = "v1.3.1";
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
         GameStateListener gsl = new GameStateListener(4123);
@@ -413,6 +413,15 @@ namespace MainProgram
             tabIngame_txtButtonUrl.Text = IngameSetting.ButtonUrl;
 
             lblVersion.Text = $"Version : {version.ToString()}";
+
+            tabIngame_txtLargeText.Enabled = tabIngame_cbShowMap.Checked;
+            tabIngame_txtSmallText.Enabled = tabIngame_cbShowTeam.Checked;
+            tabIngame_txtButtonLabel.Enabled = tabIngame_cbShowButton.Checked;
+            tabIngame_txtButtonUrl.Enabled = tabIngame_cbShowButton.Checked;
+
+            tabLobby_txtButtonLabel.Enabled = tabLobby_cbShowButton.Checked;
+            tabLobby_txtButtonUrl.Enabled = tabLobby_cbShowButton.Checked;
+
             InitService();
         }
 
@@ -590,7 +599,10 @@ namespace MainProgram
 
         private void btnRefreshFriendCode_Click(object sender, EventArgs e)
         {
-            generateFriendCode(userId);
+            //generateFriendCode(userId);
+            userId = "";
+            friendCode = "";
+            btnRefreshFriendCode.Enabled = false;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -601,6 +613,11 @@ namespace MainProgram
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowWindow();
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
