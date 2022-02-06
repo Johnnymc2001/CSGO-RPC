@@ -34,7 +34,7 @@ namespace MainProgram
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        string version = "v1.2.2";
+        string version = "v1.3";
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
         GameStateListener gsl = new GameStateListener(4123);
@@ -48,10 +48,10 @@ namespace MainProgram
 
         public static class IdleSetting
         {
+            public static bool ShowButton { get; set; }
             public static string Detail { get; set; } = "Idle";
             public static string State { get; set; } = "Chillin in the menu";
 
-            public static bool ShowButton { get; set; }
             public static string ButtonLabel { get; set; }
             public static string ButtonUrl { get; set;}
         }
@@ -60,13 +60,13 @@ namespace MainProgram
         {
             public static bool ShowTeam { get; set; }
             public static bool ShowMap { get; set; } = true;
+            public static bool ShowButton { get; set; }
 
             public static string Detail { get; set; }
             public static string State { get; set; }
             public static string LargeText { get; set; }
             public static string SmallText { get; set; }
 
-            public static bool ShowButton { get; set; }
             public static string ButtonLabel { get; set; }
             public static string ButtonUrl { get; set; }
         }
@@ -290,9 +290,7 @@ namespace MainProgram
         {
             var buttons = new List<DiscordRPC.Button>();
 
-            var button = new DiscordRPC.Button();
-            button.Label = buttonLabel;
-            button.Url = buttonUrl;
+            var button = new DiscordRPC.Button() { Label = buttonLabel, Url = buttonUrl};
 
             buttons.Add(button);
 
