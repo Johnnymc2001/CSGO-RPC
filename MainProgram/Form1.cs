@@ -228,12 +228,19 @@ namespace MainProgram
 
         private void OnNewGameState(GameState gs)
         {
+            // Debug Area
+            tabDebug_lbLastActivity.Text = DateTime.Now.ToLongTimeString();
+            label18.Text = gs.JSON;
+
+
+            // Get Friendcode
             if (friendCode.Equals(""))
             {
                 friendCode = "Generating...";
                 generateFriendCode(gs.Player.SteamID);
             }
 
+            // Main GS Parse
             var player = gs.Player;
             var activity = player.Activity;
 
@@ -615,9 +622,12 @@ namespace MainProgram
             ShowWindow();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
 
+        private void tabDebug_btnCopyToClipboard_Click(object sender, EventArgs e)
+        {
+            // JsonConvert.SerializeObject(gs.JSON, Formatting.Indented)
+            Clipboard.SetText(label18.Text);
         }
+
     }
 }

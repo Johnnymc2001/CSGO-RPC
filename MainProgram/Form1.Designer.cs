@@ -65,6 +65,12 @@
             this.tabIngame_cbShowMap = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tabDebug_btnCopyToClipboard = new System.Windows.Forms.Button();
+            this.tabDebug_lbLastActivity = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.lblLastest = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnRefreshFriendCode = new System.Windows.Forms.Button();
@@ -83,6 +89,7 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -120,14 +127,14 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(490, 222);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Config";
+            this.tabPage1.Text = "Initial";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(7, 51);
+            this.label8.Location = new System.Drawing.Point(6, 51);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(362, 30);
             this.label8.TabIndex = 8;
@@ -176,7 +183,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lobby";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // label15
             // 
@@ -431,14 +437,79 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.AutoScroll = true;
+            this.tabPage4.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage4.Controls.Add(this.panel2);
+            this.tabPage4.Controls.Add(this.label18);
+            this.tabPage4.Controls.Add(this.tabDebug_btnCopyToClipboard);
+            this.tabPage4.Controls.Add(this.tabDebug_lbLastActivity);
+            this.tabPage4.Controls.Add(this.label13);
+            this.tabPage4.Controls.Add(this.label12);
+            this.tabPage4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(100, 5, 5, 5);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(490, 222);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "About";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage4.Text = "Debug";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(6, 49);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(470, 1);
+            this.panel2.TabIndex = 7;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(6, 53);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(138, 13);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "CSGO GSI Data Goes Here";
+            // 
+            // tabDebug_btnCopyToClipboard
+            // 
+            this.tabDebug_btnCopyToClipboard.Location = new System.Drawing.Point(346, 22);
+            this.tabDebug_btnCopyToClipboard.Name = "tabDebug_btnCopyToClipboard";
+            this.tabDebug_btnCopyToClipboard.Size = new System.Drawing.Size(130, 24);
+            this.tabDebug_btnCopyToClipboard.TabIndex = 5;
+            this.tabDebug_btnCopyToClipboard.Text = "Copy To Clipboard";
+            this.tabDebug_btnCopyToClipboard.UseVisualStyleBackColor = true;
+            this.tabDebug_btnCopyToClipboard.Click += new System.EventHandler(this.tabDebug_btnCopyToClipboard_Click);
+            // 
+            // tabDebug_lbLastActivity
+            // 
+            this.tabDebug_lbLastActivity.AutoSize = true;
+            this.tabDebug_lbLastActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabDebug_lbLastActivity.Location = new System.Drawing.Point(93, 34);
+            this.tabDebug_lbLastActivity.Name = "tabDebug_lbLastActivity";
+            this.tabDebug_lbLastActivity.Size = new System.Drawing.Size(33, 13);
+            this.tabDebug_lbLastActivity.TabIndex = 3;
+            this.tabDebug_lbLastActivity.Text = "None";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 33);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(89, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Last Activity : ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(189, 6);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(287, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "A Simple CSGO RPC - Made By johnnymc2001@gmail.com";
             // 
             // lblLastest
             // 
@@ -602,6 +673,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -661,6 +734,12 @@
         private System.Windows.Forms.TextBox tabIngame_txtButtonLabel;
         private System.Windows.Forms.CheckBox tabIngame_cbShowButton;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label tabDebug_lbLastActivity;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button tabDebug_btnCopyToClipboard;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
