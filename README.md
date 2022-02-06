@@ -3,7 +3,7 @@
 
 # Requirement
 - This app required [.NET 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48) to be installed on your computer to be able to run
-- 
+ 
 # Usage
 - Run the application (MainProgram.exe)
 - Leave the application running or minimize it down for the presence to work
