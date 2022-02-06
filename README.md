@@ -3,6 +3,10 @@
 
 # Requirement
 - This app required [.NET 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48) to be installed on your computer to be able to run
+ 
+# Usage
+- Run the application (MainProgram.exe)
+- Leave the application running or minimize it down for the presence to work
 
 # Installation
 - For the app to work with csgo, the gamestate config file must first be copy to CSGO's cfg folder before running CS:GO, you can do it's in 2 way
