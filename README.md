@@ -63,4 +63,16 @@
 ![Lobby](https://i.imgur.com/1xgCMOD.png)
 ![Ingame](https://i.imgur.com/D2DyXHc.png)
 
-![First Tab](https://i.imgur.com/L4Sfolf.png)
+- Main Menu
+
+![First Tab](https://i.imgur.com/9BJPiiu.png)
+
+- Customize Presence
+
+![Lobby](https://i.imgur.com/cnW2bSh.png)
+![Ingame](https://i.imgur.com/JUwfu7z.png)
+
+- Something...
+
+![Debug](https://i.imgur.com/NJB8Jlw.png)
+
