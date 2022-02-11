@@ -7,7 +7,7 @@
     <ProjectGuid>{CB7DF650-40E3-4F70-B141-BBB3A94CDE2B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MainProgram</RootNamespace>
-    <AssemblyName>MainProgram</AssemblyName>
+    <AssemblyName>CSGO-RPC</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -115,6 +115,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfileDTO.cs" />
     <Compile Include="UserInfoDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

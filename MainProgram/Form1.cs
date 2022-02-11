@@ -82,7 +82,7 @@ namespace MainProgram
             try
             {
                 btnRefreshFriendCode.Enabled = false;
-                string url = $"{apiEndpoint}/steam/id-to-friendcode/{id}";
+                string url = $"{apiEndpoint}/steam/steam-profile/{id}";
                 userId = id;
                 UserInfoDTO fc = await url.GetJsonAsync<UserInfoDTO>();
                 friendCode = fc.friendcode;

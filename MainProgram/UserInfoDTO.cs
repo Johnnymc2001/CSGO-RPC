@@ -10,5 +10,6 @@ namespace MainProgram
     {
         public string steamId { get; set; }
         public string friendcode { get; set; }
+        public ProfileDTO profile { get; set; }
     }
 }
