@@ -53,7 +53,7 @@ namespace MainProgram
             public static string State { get; set; } = "Chillin in the menu";
 
             public static string ButtonLabel { get; set; }
-            public static string ButtonUrl { get; set;}
+            public static string ButtonUrl { get; set; }
         }
 
         public static class IngameSetting
@@ -74,7 +74,6 @@ namespace MainProgram
         public Form1()
         {
             startTime = DateTime.UtcNow;
-            discordRPCClient = new DiscordRpcClient(GetConfig("ApplicationId"), -1);
             InitializeComponent();
         }
         // =========================================================== Main Function ===========================================================
@@ -256,7 +255,7 @@ namespace MainProgram
 
                 UpdatePresence(detail, state, "csgo", "Playing CSGO", "csgo", "Playing CSGO", showButton, buttonLabel, buttonUrl);
             }
-            else if (activity.ToString().ToLower() == "playing")
+            else if ( activity.ToString().ToLower() == "playing")
             {
                 try
                 {
@@ -280,16 +279,20 @@ namespace MainProgram
 
                     if (IngameSetting.ShowMap) largeKey = $"{map}";
                     if (IngameSetting.ShowTeam) smallKey = player.Team.ToString() == "T" ? "terrorists" : "counterterrorists" ?? "spec";
-
                     UpdatePresence($"{detail}", $"{state}", largeKey, largeText, smallKey, smallText, showButton, buttonLabel, buttonUrl);
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    Console.WriteLine(ex.Message);
                 }
             }
         }
 
+        private string LimitText(string str, int limit)
+        {
+            if (str.Length > limit) str = str.Substring(0, limit - 1);
+            return str;
+        }
         private void UpdatePresence(
             string title, string detail,
             string largeKey = "none", string largeText = "",
@@ -298,21 +301,21 @@ namespace MainProgram
         {
             var buttons = new List<DiscordRPC.Button>();
 
-            var button = new DiscordRPC.Button() { Label = buttonLabel, Url = buttonUrl};
+            var button = new DiscordRPC.Button() { Label = LimitText(buttonLabel, 32), Url = buttonUrl };
 
             buttons.Add(button);
 
             var curPres = discordRPCClient.CurrentPresence;
             var pres = new RichPresence()
             {
-                Details = title,
-                State = detail,
+                Details = LimitText(title, 128),
+                State = LimitText(detail, 128),
                 Assets = new Assets()
                 {
                     LargeImageKey = largeKey,
-                    LargeImageText = largeText,
+                    LargeImageText = LimitText(largeText, 128),
                     SmallImageKey = smallKey,
-                    SmallImageText = smallText,
+                    SmallImageText = LimitText(smallText, 128),
 
                 },
                 Timestamps = new Timestamps(),
@@ -382,10 +385,12 @@ namespace MainProgram
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            txtApplicationId.Text = GetConfig("ApplicationId");
+            discordRPCClient = new DiscordRpcClient(GetConfig("ApplicationId") ?? "494378226857279498");
+
             getLastestVersion();
             // Init ID
 
-            txtApplicationId.Text = GetConfig("ApplicationId");
             // Init for Lobby
             IdleSetting.Detail = GetConfig("Lobby_Detail");
             IdleSetting.State = GetConfig("Lobby_State");
