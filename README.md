@@ -57,6 +57,14 @@
 
 // Idle Setting Only Have {FriendCode, Username and ID}
 
+# Custom Application
+- If you want to create custom application to use with my build, here the assets naming
+
+	- The main logo : csgo
+	- Maps : typeofmap_mapName (Example : de_nuke, cs_office,...)
+	- Side : counterterrorists, terrorists
+
+- I use https://liquipedia.net/counterstrike/Portal:Maps to get the images for maps
 
 # Implementation
 
