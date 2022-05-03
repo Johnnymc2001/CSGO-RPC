@@ -38,7 +38,7 @@ namespace MainProgram
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
         GameStateListener gsl = new GameStateListener(4123);
-        DiscordRpcClient discordRPCClient = new DiscordRpcClient("494378226857279498", -1);
+        DiscordRpcClient discordRPCClient;
         DateTime startTime;
 
         string userId = "";
@@ -74,6 +74,7 @@ namespace MainProgram
         public Form1()
         {
             startTime = DateTime.UtcNow;
+            discordRPCClient = new DiscordRpcClient(GetConfig("ApplicationId"), -1);
             InitializeComponent();
         }
         // =========================================================== Main Function ===========================================================
@@ -237,7 +238,7 @@ namespace MainProgram
             if (friendCode.Equals(""))
             {
                 friendCode = "Generating...";
-                generateFriendCode(gs.Player.SteamID);
+                generateFriendCode(gs.Provider.SteamID);
             }
 
             // Main GS Parse
@@ -382,7 +383,9 @@ namespace MainProgram
         private void Form1_Load(object sender, EventArgs e)
         {
             getLastestVersion();
+            // Init ID
 
+            txtApplicationId.Text = GetConfig("ApplicationId");
             // Init for Lobby
             IdleSetting.Detail = GetConfig("Lobby_Detail");
             IdleSetting.State = GetConfig("Lobby_State");
@@ -629,5 +632,15 @@ namespace MainProgram
             Clipboard.SetText(label18.Text);
         }
 
+        private void btnChangeId_Click(object sender, EventArgs e)
+        {
+            if (txtApplicationId.Text.Trim() != "")
+            {
+                SetConfig("ApplicationId", txtApplicationId.Text);
+                discordRPCClient.ClearPresence();
+                discordRPCClient = new DiscordRpcClient(txtApplicationId.Text, -1);
+                MessageBox.Show("New Application ID Set. If it didn't update on discord, try restarting the application.");
+            }
+        }
     }
 }

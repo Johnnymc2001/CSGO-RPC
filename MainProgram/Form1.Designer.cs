@@ -85,6 +85,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_Minimize = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
+            this.txtApplicationId = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btnChangeId = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -119,6 +122,9 @@
             // tabPage1
             // 
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.btnChangeId);
+            this.tabPage1.Controls.Add(this.label19);
+            this.tabPage1.Controls.Add(this.txtApplicationId);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.tabCSGO_btnInstall);
             this.tabPage1.Controls.Add(this.label3);
@@ -645,6 +651,32 @@
             this.btn_Exit.UseVisualStyleBackColor = false;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
+            // txtApplicationId
+            // 
+            this.txtApplicationId.Location = new System.Drawing.Point(232, 194);
+            this.txtApplicationId.Name = "txtApplicationId";
+            this.txtApplicationId.Size = new System.Drawing.Size(167, 20);
+            this.txtApplicationId.TabIndex = 9;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(229, 178);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(251, 13);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Application ID (Change if you want to use your own)";
+            // 
+            // btnChangeId
+            // 
+            this.btnChangeId.Location = new System.Drawing.Point(405, 191);
+            this.btnChangeId.Name = "btnChangeId";
+            this.btnChangeId.Size = new System.Drawing.Size(75, 23);
+            this.btnChangeId.TabIndex = 15;
+            this.btnChangeId.Text = "Change";
+            this.btnChangeId.UseVisualStyleBackColor = true;
+            this.btnChangeId.Click += new System.EventHandler(this.btnChangeId_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -741,6 +773,9 @@
         private System.Windows.Forms.Button tabDebug_btnCopyToClipboard;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnChangeId;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtApplicationId;
     }
 }
 
