@@ -34,7 +34,7 @@ namespace MainProgram
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        string version = "v1.3.3";
+        string version = "v1.3.4";
         Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
         GameStateListener gsl = new GameStateListener(4123);
@@ -59,6 +59,9 @@ namespace MainProgram
         public static class IngameSetting
         {
             public static bool ShowTeam { get; set; }
+            public static bool CustomSmallImage { get; set; }
+            public static string CustomSmallImageKey { get; set; }
+
             public static bool ShowMap { get; set; } = true;
             public static bool ShowButton { get; set; }
 
@@ -255,7 +258,7 @@ namespace MainProgram
 
                 UpdatePresence(detail, state, "csgo", "Playing CSGO", "csgo", "Playing CSGO", showButton, buttonLabel, buttonUrl);
             }
-            else if ( activity.ToString().ToLower() == "playing")
+            else if (activity.ToString().ToLower() == "playing")
             {
                 try
                 {
@@ -278,7 +281,8 @@ namespace MainProgram
                     string buttonUrl = ParsePlaceHolder(gs, IngameSetting.ButtonUrl);
 
                     if (IngameSetting.ShowMap) largeKey = $"{map}";
-                    if (IngameSetting.ShowTeam) smallKey = player.Team.ToString() == "T" ? "terrorists" : "counterterrorists" ?? "spec";
+                    if (IngameSetting.ShowTeam) smallKey = IngameSetting.CustomSmallImage ? IngameSetting.CustomSmallImageKey :
+                            player.Team.ToString() == "T" ? "terrorists" : "counterterrorists" ?? "spec";
                     UpdatePresence($"{detail}", $"{state}", largeKey, largeText, smallKey, smallText, showButton, buttonLabel, buttonUrl);
                 }
                 catch (Exception ex)
@@ -407,6 +411,9 @@ namespace MainProgram
             // Init For Ingame
             IngameSetting.ShowMap = GetConfig("Ingame_ShowMap") == "True";
             IngameSetting.ShowTeam = GetConfig("Ingame_ShowTeam") == "True";
+            IngameSetting.CustomSmallImage = GetConfig("Ingame_CustomSmallImage") == "True";
+            IngameSetting.CustomSmallImageKey = GetConfig("Ingame_CustomSmallImageKey");
+
             IngameSetting.State = GetConfig("Ingame_State");
             IngameSetting.Detail = GetConfig("Ingame_Detail");
             IngameSetting.LargeText = GetConfig("Ingame_LargeText");
@@ -418,6 +425,9 @@ namespace MainProgram
 
             tabIngame_cbShowMap.Checked = IngameSetting.ShowMap;
             tabIngame_cbShowTeam.Checked = IngameSetting.ShowTeam;
+            tabIngame_cbCustomSmallImage.Checked = IngameSetting.CustomSmallImage;
+            tabIngame_txtCustomSmallImage.Text = IngameSetting.CustomSmallImageKey;
+
             tabIngame_txtState.Text = IngameSetting.State;
             tabIngame_txtDetail.Text = IngameSetting.Detail;
             tabIngame_txtLargeText.Text = IngameSetting.LargeText;
@@ -538,6 +548,9 @@ namespace MainProgram
             bool ShowMap = tabIngame_cbShowMap.Checked ? true : false;
             bool ShowTeam = tabIngame_cbShowTeam.Checked ? true : false;
 
+            bool CustomSmallImage = tabIngame_cbCustomSmallImage.Checked ? true : false;
+            string CustomSmallImageKey = tabIngame_txtCustomSmallImage.Text;
+
             bool showButton = tabIngame_cbShowButton.Checked;
             string buttonLabel = tabIngame_txtButtonLabel.Text;
             string buttonUrl = tabIngame_txtButtonUrl.Text;
@@ -546,6 +559,9 @@ namespace MainProgram
             SetConfig("Ingame_State", state);
             SetConfig("Ingame_ShowMap", ShowMap == true ? "True" : "False");
             SetConfig("Ingame_ShowTeam", ShowTeam == true ? "True" : "False");
+            SetConfig("Ingame_CustomSmallImage", CustomSmallImage == true ? "True" : "False");
+            SetConfig("Ingame_CustomSmallImageKey", CustomSmallImageKey);
+
             SetConfig("Ingame_LargeText", largeText);
             SetConfig("Ingame_SmallText", smallText);
 
@@ -557,6 +573,9 @@ namespace MainProgram
             IngameSetting.State = state;
             IngameSetting.ShowMap = ShowMap;
             IngameSetting.ShowTeam = ShowTeam;
+            IngameSetting.CustomSmallImage = CustomSmallImage;
+            IngameSetting.CustomSmallImageKey = CustomSmallImageKey;
+
             IngameSetting.LargeText = largeText;
             IngameSetting.SmallText = smallText;
             IngameSetting.ShowButton = showButton;

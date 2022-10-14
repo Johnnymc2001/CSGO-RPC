@@ -33,6 +33,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnChangeId = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtApplicationId = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabCSGO_btnInstall = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -85,9 +88,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_Minimize = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
-            this.txtApplicationId = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.btnChangeId = new System.Windows.Forms.Button();
+            this.tabIngame_cbCustomSmallImage = new System.Windows.Forms.CheckBox();
+            this.tabIngame_txtCustomSmallImage = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -116,7 +118,7 @@
             this.tabControl1.Location = new System.Drawing.Point(11, 36);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(498, 248);
+            this.tabControl1.Size = new System.Drawing.Size(498, 267);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -135,6 +137,32 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Initial";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnChangeId
+            // 
+            this.btnChangeId.Location = new System.Drawing.Point(405, 191);
+            this.btnChangeId.Name = "btnChangeId";
+            this.btnChangeId.Size = new System.Drawing.Size(75, 23);
+            this.btnChangeId.TabIndex = 15;
+            this.btnChangeId.Text = "Change";
+            this.btnChangeId.UseVisualStyleBackColor = true;
+            this.btnChangeId.Click += new System.EventHandler(this.btnChangeId_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(229, 178);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(251, 13);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Application ID (Change if you want to use your own)";
+            // 
+            // txtApplicationId
+            // 
+            this.txtApplicationId.Location = new System.Drawing.Point(232, 194);
+            this.txtApplicationId.Name = "txtApplicationId";
+            this.txtApplicationId.Size = new System.Drawing.Size(167, 20);
+            this.txtApplicationId.TabIndex = 9;
             // 
             // label8
             // 
@@ -288,6 +316,8 @@
             // tabPage3
             // 
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage3.Controls.Add(this.tabIngame_txtCustomSmallImage);
+            this.tabPage3.Controls.Add(this.tabIngame_cbCustomSmallImage);
             this.tabPage3.Controls.Add(this.label17);
             this.tabPage3.Controls.Add(this.tabIngame_txtButtonUrl);
             this.tabPage3.Controls.Add(this.label16);
@@ -305,7 +335,7 @@
             this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(490, 222);
+            this.tabPage3.Size = new System.Drawing.Size(490, 241);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Ingame";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -313,7 +343,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 163);
+            this.label17.Location = new System.Drawing.Point(8, 188);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(20, 13);
             this.label17.TabIndex = 32;
@@ -321,7 +351,7 @@
             // 
             // tabIngame_txtButtonUrl
             // 
-            this.tabIngame_txtButtonUrl.Location = new System.Drawing.Point(101, 160);
+            this.tabIngame_txtButtonUrl.Location = new System.Drawing.Point(97, 185);
             this.tabIngame_txtButtonUrl.Name = "tabIngame_txtButtonUrl";
             this.tabIngame_txtButtonUrl.Size = new System.Drawing.Size(385, 20);
             this.tabIngame_txtButtonUrl.TabIndex = 31;
@@ -329,7 +359,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(4, 141);
+            this.label16.Location = new System.Drawing.Point(6, 166);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(33, 13);
             this.label16.TabIndex = 30;
@@ -337,7 +367,7 @@
             // 
             // tabIngame_txtButtonLabel
             // 
-            this.tabIngame_txtButtonLabel.Location = new System.Drawing.Point(101, 138);
+            this.tabIngame_txtButtonLabel.Location = new System.Drawing.Point(97, 163);
             this.tabIngame_txtButtonLabel.Name = "tabIngame_txtButtonLabel";
             this.tabIngame_txtButtonLabel.Size = new System.Drawing.Size(385, 20);
             this.tabIngame_txtButtonLabel.TabIndex = 29;
@@ -345,7 +375,7 @@
             // tabIngame_cbShowButton
             // 
             this.tabIngame_cbShowButton.AutoSize = true;
-            this.tabIngame_cbShowButton.Location = new System.Drawing.Point(7, 116);
+            this.tabIngame_cbShowButton.Location = new System.Drawing.Point(7, 146);
             this.tabIngame_cbShowButton.Name = "tabIngame_cbShowButton";
             this.tabIngame_cbShowButton.Size = new System.Drawing.Size(87, 17);
             this.tabIngame_cbShowButton.TabIndex = 28;
@@ -386,7 +416,7 @@
             // tabIngame_cbShowTeam
             // 
             this.tabIngame_cbShowTeam.AutoSize = true;
-            this.tabIngame_cbShowTeam.Location = new System.Drawing.Point(7, 93);
+            this.tabIngame_cbShowTeam.Location = new System.Drawing.Point(7, 96);
             this.tabIngame_cbShowTeam.Name = "tabIngame_cbShowTeam";
             this.tabIngame_cbShowTeam.Size = new System.Drawing.Size(149, 17);
             this.tabIngame_cbShowTeam.TabIndex = 21;
@@ -412,7 +442,7 @@
             // 
             // tabIngame_btnSave
             // 
-            this.tabIngame_btnSave.Location = new System.Drawing.Point(410, 190);
+            this.tabIngame_btnSave.Location = new System.Drawing.Point(410, 213);
             this.tabIngame_btnSave.Name = "tabIngame_btnSave";
             this.tabIngame_btnSave.Size = new System.Drawing.Size(75, 23);
             this.tabIngame_btnSave.TabIndex = 15;
@@ -520,7 +550,7 @@
             // lblLastest
             // 
             this.lblLastest.AutoSize = true;
-            this.lblLastest.Location = new System.Drawing.Point(13, 287);
+            this.lblLastest.Location = new System.Drawing.Point(12, 306);
             this.lblLastest.Name = "lblLastest";
             this.lblLastest.Size = new System.Drawing.Size(47, 13);
             this.lblLastest.TabIndex = 13;
@@ -529,7 +559,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(283, 293);
+            this.label10.Location = new System.Drawing.Point(282, 312);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 13);
             this.label10.TabIndex = 11;
@@ -537,7 +567,7 @@
             // 
             // btnRefreshFriendCode
             // 
-            this.btnRefreshFriendCode.Location = new System.Drawing.Point(448, 290);
+            this.btnRefreshFriendCode.Location = new System.Drawing.Point(447, 309);
             this.btnRefreshFriendCode.Name = "btnRefreshFriendCode";
             this.btnRefreshFriendCode.Size = new System.Drawing.Size(57, 22);
             this.btnRefreshFriendCode.TabIndex = 10;
@@ -547,7 +577,7 @@
             // 
             // txtFriendCode
             // 
-            this.txtFriendCode.Location = new System.Drawing.Point(353, 290);
+            this.txtFriendCode.Location = new System.Drawing.Point(352, 309);
             this.txtFriendCode.Name = "txtFriendCode";
             this.txtFriendCode.Size = new System.Drawing.Size(89, 20);
             this.txtFriendCode.TabIndex = 9;
@@ -555,7 +585,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(13, 300);
+            this.lblVersion.Location = new System.Drawing.Point(12, 319);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(51, 13);
             this.lblVersion.TabIndex = 7;
@@ -651,38 +681,29 @@
             this.btn_Exit.UseVisualStyleBackColor = false;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
-            // txtApplicationId
+            // tabIngame_cbCustomSmallImage
             // 
-            this.txtApplicationId.Location = new System.Drawing.Point(232, 194);
-            this.txtApplicationId.Name = "txtApplicationId";
-            this.txtApplicationId.Size = new System.Drawing.Size(167, 20);
-            this.txtApplicationId.TabIndex = 9;
+            this.tabIngame_cbCustomSmallImage.AutoSize = true;
+            this.tabIngame_cbCustomSmallImage.Location = new System.Drawing.Point(7, 122);
+            this.tabIngame_cbCustomSmallImage.Name = "tabIngame_cbCustomSmallImage";
+            this.tabIngame_cbCustomSmallImage.Size = new System.Drawing.Size(143, 17);
+            this.tabIngame_cbCustomSmallImage.TabIndex = 33;
+            this.tabIngame_cbCustomSmallImage.Text = "Use Custom Small Image";
+            this.tabIngame_cbCustomSmallImage.UseVisualStyleBackColor = true;
             // 
-            // label19
+            // tabIngame_txtCustomSmallImage
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(229, 178);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(251, 13);
-            this.label19.TabIndex = 14;
-            this.label19.Text = "Application ID (Change if you want to use your own)";
-            // 
-            // btnChangeId
-            // 
-            this.btnChangeId.Location = new System.Drawing.Point(405, 191);
-            this.btnChangeId.Name = "btnChangeId";
-            this.btnChangeId.Size = new System.Drawing.Size(75, 23);
-            this.btnChangeId.TabIndex = 15;
-            this.btnChangeId.Text = "Change";
-            this.btnChangeId.UseVisualStyleBackColor = true;
-            this.btnChangeId.Click += new System.EventHandler(this.btnChangeId_Click);
+            this.tabIngame_txtCustomSmallImage.Location = new System.Drawing.Point(190, 122);
+            this.tabIngame_txtCustomSmallImage.Name = "tabIngame_txtCustomSmallImage";
+            this.tabIngame_txtCustomSmallImage.Size = new System.Drawing.Size(295, 20);
+            this.tabIngame_txtCustomSmallImage.TabIndex = 34;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(523, 319);
+            this.ClientSize = new System.Drawing.Size(523, 341);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lblLastest);
             this.Controls.Add(this.txtFriendCode);
@@ -776,6 +797,8 @@
         private System.Windows.Forms.Button btnChangeId;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtApplicationId;
+        private System.Windows.Forms.TextBox tabIngame_txtCustomSmallImage;
+        private System.Windows.Forms.CheckBox tabIngame_cbCustomSmallImage;
     }
 }
 
